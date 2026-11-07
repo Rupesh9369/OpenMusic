@@ -38,7 +38,7 @@ Downloads are on the [Releases page](https://github.com/Rupesh9369/OpenMusic/rel
 ## Features
 
 - **Two catalogues, one player:** YouTube Music first, JioSaavn as a second source and automatic fallback.
-- **Local music:** plays songs from your device (Android) or from `Music\OpenMusic` on your PC (Windows). The folders are `Music/K4 Audio` (phone) and `MusicK4 Audio` (PC).
+- **Local music:** plays songs from your device (Android) or from your PC (Windows). The folders are `Music/K4 Audio` on the phone and `Music\K4 Audio` on the PC.
 - **Downloads** for offline listening, with streaming quality from *Data saver* to *High*.
 - **Playlist import** from Spotify and YouTube Music links.
 - **Audio effects:** 10-band equalizer with presets, bass boost, wide stage, reverb, loudness normalization, pitch and skip silence.
