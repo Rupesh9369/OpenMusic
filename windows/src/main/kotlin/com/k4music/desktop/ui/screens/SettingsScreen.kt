@@ -65,6 +65,7 @@ import com.k4music.desktop.player.AudioEffects
 import com.k4music.desktop.player.Downloads
 import com.k4music.desktop.prefs.AudioQuality
 import com.k4music.desktop.prefs.Reverb
+import com.k4music.desktop.prefs.SpatialMode
 import com.k4music.desktop.prefs.Settings
 import com.k4music.desktop.prefs.ThemeMode
 import com.k4music.desktop.prefs.NavPosition
@@ -99,7 +100,7 @@ private enum class SettingsPage(val title: StringResource, val subtitle: String,
     Library(Res.string.settings_section_library, "Folders & Data", Res.drawable.library),
     Transfer(Res.string.desktop_transfer_title, "Phone → PC", Res.drawable.sync),
     Advanced(Res.string.desktop_advanced, "yt-dlp & Logs", Res.drawable.server),
-    About(Res.string.about, "Kartik Langwan", Res.drawable.information)
+    About(Res.string.about, "Rupesh", Res.drawable.information)
 }
 
 /** Kept while the app runs, so Settings reopens on the page you were looking at. */
@@ -359,6 +360,7 @@ private fun AppearanceSection() = Section(Res.string.appearance) {
             BackgroundStyle.Alpine to stringResource(Res.string.desktop_bg_alpine),
             BackgroundStyle.Aurora to stringResource(Res.string.desktop_bg_aurora),
             BackgroundStyle.PureBlack to stringResource(Res.string.desktop_bg_pure_black),
+            BackgroundStyle.Glass to stringResource(Res.string.desktop_bg_glass),
             BackgroundStyle.Accent to stringResource(Res.string.desktop_bg_accent),
             BackgroundStyle.Image to stringResource(Res.string.desktop_bg_image)
         ),
@@ -566,6 +568,20 @@ private fun EffectsSection() = Section(Res.string.audio_effects) {
         ),
         Settings.reverb
     ) { Settings.reverb = it; player.applyEffects() }
+    Label("Spatial audio")
+    Choices(
+        listOf(SpatialMode.Normal to "2D", SpatialMode.Three to "3D", SpatialMode.Eight to "8D", SpatialMode.Sixteen to "16D"),
+        Settings.spatial
+    ) { Settings.spatial = it; player.applyEffects() }
+    OutlinedButton(onClick = {
+        AudioEffects.setGains(AudioEffects.presets.getValue("Flat"), "Flat")
+        Settings.equalizerEnabled = false
+        Settings.bassBoost = 0
+        Settings.wideStage = 0
+        Settings.reverb = Reverb.None
+        Settings.spatial = SpatialMode.Normal
+        player.applyEffects()
+    }) { Text("Reset to default") }
 }
 
 @Composable
@@ -745,7 +761,7 @@ private fun AboutSection() = Section(Res.string.about) {
             Box(Modifier.fillMaxWidth().height(160.dp)) {
                 androidx.compose.foundation.Image(
                     painter = painterResource(Res.drawable.scenery_mountain),
-                    contentDescription = "K4 Audio Alpine Landscape",
+                    contentDescription = "OpenMusic Alpine Landscape",
                     contentScale = ContentScale.Crop,
                     modifier = Modifier.fillMaxSize().clip(RoundedCornerShape(topStart = 20.dp, topEnd = 20.dp))
                 )
@@ -908,13 +924,13 @@ private fun AboutSection() = Section(Res.string.about) {
     }
 }
 
-const val WEBSITE = "https://k4audio.vercel.app"
-private const val GITHUB = "https://github.com/KartikLangwan/K4Audio"
-private const val CREATOR_SITE = "https://kartiklangwan.vercel.app"
+const val WEBSITE = "https://rupeshh.pages.dev"
+private const val GITHUB = "https://github.com/Rupesh9369/OpenMusic"
+private const val CREATOR_SITE = "https://rupeshh.pages.dev"
 private val APP_VERSION get() = com.k4music.desktop.Updater.currentVersion
 
 /**
- * Compares this version with the newest K4 Audio release; downloads always go through the
+ * Compares this version with the newest OpenMusic release; downloads always go through the
  * website. Offline or rate-limited: the website opens so the user can look there.
  */
 private suspend fun checkForUpdate() {

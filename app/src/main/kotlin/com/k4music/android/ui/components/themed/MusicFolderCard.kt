@@ -19,7 +19,7 @@ import com.k4music.android.utils.toast
 import com.k4music.core.ui.LocalAppearance
 import java.io.File
 
-/** The folder K4 Audio tells people to put songs in: `Music/K4 Audio`, visible in any file manager. */
+/** The folder OpenMusic tells people to put songs in: `Music/K4 Audio`, visible in any file manager. */
 object MusicFolder {
     private const val NAME = "K4 Audio"
 

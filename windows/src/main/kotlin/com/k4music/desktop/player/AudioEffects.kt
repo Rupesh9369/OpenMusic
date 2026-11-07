@@ -1,6 +1,7 @@
 package com.k4music.desktop.player
 
 import com.k4music.desktop.prefs.Reverb
+import com.k4music.desktop.prefs.SpatialMode
 import com.k4music.desktop.prefs.Settings
 import java.util.Locale
 
@@ -47,10 +48,16 @@ object AudioEffects {
             Reverb.SmallRoom -> lavfi += "aecho=0.8:0.7:40:0.25"
             Reverb.LargeHall -> lavfi += "aecho=0.8:0.85:70|130:0.3|0.2"
         }
+        when (Settings.spatial) {
+            SpatialMode.Normal -> Unit
+            SpatialMode.Three -> lavfi += "extrastereo=m=2.5,aecho=0.6:0.3:25:0.2"
+            SpatialMode.Eight -> lavfi += "apulsator=mode=sine:hz=0.125:width=1"
+            SpatialMode.Sixteen -> lavfi += "apulsator=mode=sine:hz=0.0625:width=1"
+        }
         if (Settings.volumeNormalization) lavfi += "dynaudnorm=f=150:g=15:m=10:p=0.95:r=0.9"
         if (Settings.skipSilence) lavfi += "silenceremove=start_periods=1:start_threshold=-50dB:stop_periods=-1:stop_duration=1.5:stop_threshold=-50dB"
         // Boosted bands and bass add up above full scale and would crackle: a limiter at the very end keeps them clean.
-        if (Settings.equalizerEnabled || Settings.bassBoost > 0 || Settings.wideStage > 0) lavfi += "alimiter=limit=0.95:level=0"
+        if (Settings.equalizerEnabled || Settings.bassBoost > 0 || Settings.wideStage > 0 || Settings.spatial != SpatialMode.Normal) lavfi += "alimiter=limit=0.95:level=0"
         val filters = lavfi.map { "lavfi=[$it]" }.toMutableList()
         if (Settings.pitch != 1f) filters += "rubberband=pitch-scale=${fmt(Settings.pitch)}"
         return filters.joinToString(",")

@@ -112,7 +112,7 @@
     <string name="no_browser_installed">Nije pronađena aplikacija za pregledanje interneta</string>
     <string name="no_equalizer_installed">Nije pronađena aplikacija za podešavanje ekvilajzera</string>
     <string name="no_file_chooser_installed">Nije pronađena aplikacija za kreiranje dokumenata</string>
-    <string name="no_battery_optimization_settings_found">Nije pronađeno podešavanje za optimizaciju baterije, molimo da ručno dodate K4 Audio na belu listu</string>
+    <string name="no_battery_optimization_settings_found">Nije pronađeno podešavanje za optimizaciju baterije, molimo da ručno dodate OpenMusic na belu listu</string>
     <string name="related_albums">Povezani albumi</string>
     <string name="similar_artists">Slični umetnici</string>
     <string name="recommended_playlists">Plejliste koje bi vam se mogle svideti</string>
@@ -147,7 +147,7 @@
     <string name="view_album">Pogledaj album</string>
     <string name="view_playlist">Pogledaj plejlistu</string>
     <string name="search_placeholder">Unesite ime</string>
-    <string name="format_version_credits">v%1$s od Kartik Langwan</string>
+    <string name="format_version_credits">v%1$s od Rupesh</string>
     <string name="social">Društveno</string>
     <string name="contact">Kontakt</string>
     <string name="github">GitHub</string>
@@ -218,7 +218,7 @@
     <string name="backup_description">Lični preferencije (npr. mod teme) i keš su isključeni.</string>
     <string name="backup_action_description">Izvezi bazu podataka na eksternu memoriju</string>
     <string name="restore">Vrati</string>
-    <string name="restore_warning">Postojeći podaci će biti prepisani.\nK4 Audio će se automatski zatvoriti nakon vraćanja baze podataka.</string>
+    <string name="restore_warning">Postojeći podaci će biti prepisani.\nOpenMusic će se automatski zatvoriti nakon vraćanja baze podataka.</string>
     <string name="restore_description">Uvezi bazu podataka sa eksterne memorije</string>
     <string name="other">Ostalo</string>
     <string name="android_auto">Android Auto</string>

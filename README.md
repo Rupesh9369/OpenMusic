@@ -1,11 +1,11 @@
 <div align="center">
-    <img src="./app/src/main/ic_launcher-playstore.png" width="128" height="128" alt="K4 Audio icon"/>
-    <h1>K4 Audio</h1>
-    <p><b>Your music. Every screen.</b><br/>A free, ad-free music player for Android and Windows by Kartik Langwan</p>
+    <img src="./app/src/main/ic_launcher-playstore.png" width="128" height="128" alt="OpenMusic icon"/>
+    <h1>OpenMusic</h1>
+    <p><b>Your music. Every screen.</b> · Open Frix<br/>A free, ad-free music player for Android and Windows by Rupesh</p>
 
-<a href="https://k4audio.vercel.app/download"><img src="https://img.shields.io/badge/Android-Download%20APK-555555?style=for-the-badge&logo=android&logoColor=white" alt="Download for Android"/></a>
-<a href="https://k4audio.vercel.app/download/windows"><img src="https://img.shields.io/badge/Windows-Download%20installer-555555?style=for-the-badge&logo=windows&logoColor=white" alt="Download for Windows"/></a>
-<a href="https://github.com/KartikLangwan/K4Audio/releases"><img src="https://img.shields.io/badge/All%20releases-555?style=for-the-badge&logo=github" alt="All releases"/></a>
+<a href="https://rupeshh.pages.dev/download"><img src="https://img.shields.io/badge/Android-Download%20APK-555555?style=for-the-badge&logo=android&logoColor=white" alt="Download for Android"/></a>
+<a href="https://rupeshh.pages.dev/download/windows"><img src="https://img.shields.io/badge/Windows-Download%20installer-555555?style=for-the-badge&logo=windows&logoColor=white" alt="Download for Windows"/></a>
+<a href="https://github.com/Rupesh9369/OpenMusic/releases"><img src="https://img.shields.io/badge/All%20releases-555?style=for-the-badge&logo=github" alt="All releases"/></a>
 
 <p>
 <img src="https://img.shields.io/badge/Android-7.0%2B-3DDC84?logo=android&logoColor=white" alt="Android 7.0+"/>
@@ -14,18 +14,18 @@
 <img src="https://img.shields.io/badge/ads-none-success" alt="No ads"/>
 </p>
 
-<p><a href="https://k4audio.vercel.app">k4audio.vercel.app</a> · <a href="https://www.instagram.com/K4RTIK.nvm/">Instagram: K4RTIK.nvm</a> · <a href="https://kartiklangwan.vercel.app">kartiklangwan.vercel.app</a></p>
+<p><a href="https://rupeshh.pages.dev">rupeshh.pages.dev</a> · <a href="https://www.instagram.com/rupeshx5/">Instagram: rupeshx5</a> · <a href="https://rupeshh.pages.dev">rupeshh.pages.dev</a></p>
 </div>
 
 ---
 
 ## Download
 
-Downloads are in this repository's [**Releases**](https://github.com/KartikLangwan/K4Audio/releases) and on [k4audio.vercel.app](https://k4audio.vercel.app).
+Downloads are in this repository's [**Releases**](https://github.com/Rupesh9369/OpenMusic/releases) and on [rupeshh.pages.dev](https://rupeshh.pages.dev).
 
 | | Android | Windows |
 | --- | --- | --- |
-| **File** | [K4Audio-v2.14.26-RELEASE.apk](https://github.com/KartikLangwan/K4Audio/releases/download/v2.14.26/K4Audio-v2.14.26-RELEASE.apk) | [K4Audio-Setup-2.14.26.exe](https://github.com/KartikLangwan/K4Audio/releases/download/v2.14.26/K4Audio-Setup-2.14.26.exe) |
+| **File** | [OpenMusic-v2.14.26-RELEASE.apk](https://github.com/Rupesh9369/OpenMusic/releases/download/v2.14.26/OpenMusic-v2.14.26-RELEASE.apk) | [OpenMusic-Setup-2.14.26.exe](https://github.com/Rupesh9369/OpenMusic/releases/download/v2.14.26/OpenMusic-Setup-2.14.26.exe) |
 | **Requires** | Android 7.0+, 64-bit ARM (arm64-v8a) | Windows 10 / 11, 64-bit |
 | **Size** | 26.4 MB | 115.8 MB |
 | **SHA-256** | `99A6426C7C224E14C57CA40F693339BD54E6CD14A585CB062356506B9E382177` | `0553E19EAD28612ED2A03C7F7E71D1B2EF96EF567BAA611CDF090E208D119FB7` |
@@ -34,7 +34,7 @@ Downloads are in this repository's [**Releases**](https://github.com/KartikLangw
 
 **Android:** open the APK on your phone and allow *Install unknown apps* for your browser when Android asks. Updating from a build signed with a different key? Uninstall that build first.
 
-**Windows:** run the installer (no admin rights needed). It isn't code-signed yet, so on *Windows protected your PC* click **More info → Run anyway**. Later updates: Settings → Check for updates → **Update now**, or run a newer installer; it closes K4 Audio, updates it and keeps your library.
+**Windows:** run the installer (no admin rights needed). It isn't code-signed yet, so on *Windows protected your PC* click **More info → Run anyway**. Later updates: Settings → Check for updates → **Update now**, or run a newer installer; it closes OpenMusic, updates it and keeps your library.
 
 ## What's new in 2.14.26
 
@@ -54,8 +54,8 @@ Downloads are in this repository's [**Releases**](https://github.com/KartikLangw
 - **Much lighter on PC:** the app now uses about 270 MB of memory instead of 470 MB (software drawing, a small garbage collector and capped caches), and the phone app starts its YouTube helper only when a song needs it. Unused code and libraries were removed.
 - **Updates without hunting:** the PC app checks at start and offers the new installer (Settings has the same button); the phone shows a card on Home and a *Check for updates* button in Settings that opens the APK download.
 - **Phone to PC transfer you can scan:** the QR code is shorter and larger (it was too dense for some cameras), the PC has **New QR code**, **Copy code** and **Disconnect**, and the phone has *Enter the code instead* if a camera cannot read the screen.
-- **Discord status finds Discord:** if Discord opens after K4 Audio, the status starts by itself within a few seconds.
-- **K4 Audio:** the app was called K4 Music. New name, new logo and a black-and-white minimal theme on phone and PC. Installing over the old app keeps your library, likes, playlists and downloads; on PC your old `K4 Music` data folder is moved to `K4 Audio` on first start.
+- **Discord status finds Discord:** if Discord opens after OpenMusic, the status starts by itself within a few seconds.
+- **OpenMusic:** the app was called OpenMusic. New name, new logo and a black-and-white minimal theme on phone and PC. Installing over the old app keeps your library, likes, playlists and downloads; on PC your old `OpenMusic` data folder is moved to `OpenMusic` on first start.
 - **A music folder you can see:** `Music\K4 Audio` on the PC is created automatically; on the phone it is `Music › K4 Audio`. Songs you drop in appear under *Library → Local*, and an **Open music folder** button is in the Local tab (and PC Settings).
 - **Time-aware greeting:** Home now says Good morning / afternoon / evening / night (it said "Good evening" in the middle of the night).
 - **Phone → PC transfer sends every playlist** (YouTube and Spotify imports too), not only liked songs.
@@ -98,7 +98,7 @@ Every fix and how it was verified: [AUDIT.md](docs/AUDIT.md), [AUDIT-2026-10-24.
 
 - 🎧 Pick the audio output (Bluetooth, headphones, speakers), even mid-song
 - ⌨️ Media keys and Bluetooth headphone buttons work in the background; Previous / Play-Pause / Next under the taskbar thumbnail
-- 💬 Discord status: *Playing K4 Audio* with the song and cover, and an icon next to your name in voice channels
+- 💬 Discord status: *Playing OpenMusic* with the song and cover, and an icon next to your name in voice channels
 - 🪟 Resizable, hideable panels, navigation left or bottom, full screen (F11), system tray
 - 🔄 In-app updates from this repository's releases
 
@@ -126,8 +126,8 @@ After compiling both platforms, run `python -B scripts/verify-library-parity.py`
 
 ## Origin
 
-K4 Audio is a merge of two codebases: [ViTune](https://github.com/25huizengek1/ViTune)
-(base: player, providers, UI) and K4 Audio (JioSaavn catalogue, taste engine,
+OpenMusic is a merge of two codebases: [ViTune](https://github.com/25huizengek1/ViTune)
+(base: player, providers, UI) and OpenMusic (JioSaavn catalogue, taste engine,
 crash-safe downloads, K4 theme). Upstream licenses and attributions are kept
 in `LICENSE` and Acknowledgments below.
 

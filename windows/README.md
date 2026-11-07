@@ -1,11 +1,11 @@
-# K4 Audio for Windows
+# OpenMusic for Windows
 
 Kotlin + Compose Desktop. Plays through libmpv, gets YouTube streams from yt-dlp (with QuickJS for its JS challenge) and falls back to JioSaavn.
 
 ```
 gradlew -p windows test              # unit tests (native playback tests are skipped without libmpv)
 gradlew -p windows run               # development run, data in windows/build/dev-data
-gradlew -p windows packageInstaller  # K4Audio-Setup-<version>.exe (needs the native tools below)
+gradlew -p windows packageInstaller  # OpenMusic-Setup-<version>.exe (needs the native tools below)
 ```
 
 ## Native tools (Native tools)

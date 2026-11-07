@@ -143,6 +143,7 @@ private fun AudioEffectsContent() {
         item(key = "bass") { BassBoostSection(caps) }
         item(key = "spatial") { SpatialSection(caps) }
         item(key = "atd") { WideStageSection() }
+        item(key = "spatial") { SpatialSection() }
         item(key = "reverb") { ReverbSection(caps) }
         item(key = "system") { SystemEqualizerEntry() }
     }
@@ -545,6 +546,42 @@ private fun WideStageSection() {
             label = stringResource(R.string.effect_intensity),
             valueText = "$width%"
         )
+    }
+}
+
+@Composable
+private fun SpatialSection() {
+    val palette = LocalAppearance.current.colorPalette
+    EffectCard(
+        title = R.string.spatial_mode_title,
+        description = R.string.spatial_mode_description
+    ) {
+        FlowRow(
+            horizontalArrangement = Arrangement.spacedBy(8.dp),
+            verticalArrangement = Arrangement.spacedBy(4.dp)
+        ) {
+            val modes = listOf(
+                PlayerPreferences.SpatialMode.Normal to "2D",
+                PlayerPreferences.SpatialMode.Three to "3D",
+                PlayerPreferences.SpatialMode.Eight to "8D",
+                PlayerPreferences.SpatialMode.Sixteen to "16D"
+            )
+            modes.forEach { (mode, label) ->
+                FilterChip(
+                    selected = PlayerPreferences.spatialMode == mode,
+                    onClick = { PlayerPreferences.spatialMode = mode },
+                    label = { Text(label) },
+                    shape = CircleShape,
+                    border = null,
+                    colors = FilterChipDefaults.filterChipColors(
+                        containerColor = palette.background2,
+                        labelColor = palette.text,
+                        selectedContainerColor = palette.accent,
+                        selectedLabelColor = palette.onAccent
+                    )
+                )
+            }
+        }
     }
 }
 

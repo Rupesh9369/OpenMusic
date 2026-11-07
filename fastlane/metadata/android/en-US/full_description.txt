@@ -1,6 +1,7 @@
-K4 Audio by Kartik Langwan
-Instagram: K4RTIK.nvm
-Website: https://kartiklangwan.vercel.app
+Open Frix (OpenMusic)
+OpenMusic by Rupesh
+Instagram: rupeshx5
+Website: https://rupeshh.pages.dev
 
 <b>Features:</b>
 
@@ -16,5 +17,5 @@ Website: https://kartiklangwan.vercel.app
 * Highly customizable (dynamic theme, Material You, ...)
 * Normalize audio for the perfect listening experience
 * Listen from your car using Android Auto
-* Open YouTube/YouTube Music links (`watch`, `playlist`, `channel`, etc.) with K4 Audio
+* Open YouTube/YouTube Music links (`watch`, `playlist`, `channel`, etc.) with OpenMusic
 * Ridiculously lightweight APK

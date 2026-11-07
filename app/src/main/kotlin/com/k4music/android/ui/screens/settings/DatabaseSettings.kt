@@ -76,7 +76,7 @@ fun DatabaseSettings() = with(DataPreferences) {
             } catch (error: kotlinx.coroutines.CancellationException) {
                 throw error
             } catch (error: Exception) {
-                android.util.Log.e("K4 Audio", "Backup failed", error)
+                android.util.Log.e("OpenMusic", "Backup failed", error)
                 context.toast(R.string.backup_failed)
             } finally { transferInProgress = false }
         }
@@ -133,7 +133,7 @@ fun DatabaseSettings() = with(DataPreferences) {
             } catch (error: kotlinx.coroutines.CancellationException) {
                 throw error
             } catch (error: Exception) {
-                android.util.Log.e("K4 Audio", "Restore failed; original library preserved", error)
+                android.util.Log.e("OpenMusic", "Restore failed; original library preserved", error)
                 context.toast(R.string.restore_failed)
                 // A failed atomic rename preserves the original, but Room needs a fresh process.
                 if (databaseClosed) exitProcess(0)

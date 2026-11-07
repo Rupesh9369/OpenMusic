@@ -172,7 +172,7 @@ private fun Hero(onPlayer: () -> Unit) {
             Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(12.dp)) {
                 // The K4 logo, as in the Home header and the PC app.
                 androidx.compose.foundation.Image(
-                    painterResource(R.drawable.k4_logo),
+                    painterResource(R.drawable.openmusic_tile),
                     null,
                     Modifier.size(44.dp).clip(RoundedCornerShape(12.dp))
                 )

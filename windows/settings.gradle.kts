@@ -1,6 +1,6 @@
 @file:Suppress("UnstableApiUsage")
 
-// K4 Audio for Windows: a separate Gradle build that reuses the Android app's
+// OpenMusic for Windows: a separate Gradle build that reuses the Android app's
 // pure-JVM music-source modules in place (../providers, ../ktor-client-brotli).
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 

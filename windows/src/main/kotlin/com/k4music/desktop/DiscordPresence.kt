@@ -22,22 +22,22 @@ import java.util.UUID
 import java.util.concurrent.TimeUnit
 
 /**
- * "Playing K4 Audio" on the user's Discord profile: song, artist, cover, a time bar and two
+ * "Playing OpenMusic" on the user's Discord profile: song, artist, cover, a time bar and two
  * links. Talks to the Discord desktop app over its local IPC pipe (no account, no
  * token, nothing leaves the PC except to Discord itself).
  *
- * Fully resilient to Discord starting after K4 Audio or restarting during playback.
+ * Fully resilient to Discord starting after OpenMusic or restarting during playback.
  */
 object DiscordPresence {
     /**
-     * The "K4 Audio" application in the Discord Developer Portal (its name is what Discord shows).
+     * The "OpenMusic" application in the Discord Developer Portal (its name is what Discord shows).
      * Empty turns the feature off.
      */
-    const val APP_ID = "1559966291790667868"
+    const val APP_ID = "1440273817720193058"
 
     val available get() = APP_ID.isNotBlank()
 
-    private const val LOGO = "https://k4audio.vercel.app/icon-192.png"
+    private const val LOGO = "https://rupeshh.pages.dev/icon-192.png"
     private const val OP_HANDSHAKE = 0
     private const val OP_FRAME = 1
 
@@ -54,7 +54,7 @@ object DiscordPresence {
                     AppLog.w("Discord", "Presence update failed: ${e.message}")
                     disconnect()
                 }
-                // Discord opened after K4 Audio (or restarted): keep looking every few seconds and start the
+                // Discord opened after OpenMusic (or restarted): keep looking every few seconds and start the
                 // status the moment its pipe appears. Opening a missing pipe costs microseconds.
                 val wanted = Settings.discordPresence
                 delay(
@@ -117,8 +117,8 @@ object DiscordPresence {
     }
 
     /**
-     * "Playing K4 Audio" for as long as the app runs (window, tray, paused or not). Only the
-     * "Playing" type puts K4 Audio's icon next to the name in voice channels; "Listening to" does not.
+     * "Playing OpenMusic" for as long as the app runs (window, tray, paused or not). Only the
+     * "Playing" type puts OpenMusic's icon next to the name in voice channels; "Listening to" does not.
      */
     private fun activity(track: Track?, playing: Boolean, start: Long, durationSeconds: Double): JsonObject = buildJsonObject {
         put("type", 0)
@@ -127,7 +127,7 @@ object DiscordPresence {
             put("state", "Your music. Every screen.")
         } else {
             put("details", fit(track.title))
-            val artists = track.artists ?: "K4 Audio"
+            val artists = track.artists ?: "OpenMusic"
             put("state", fit(if (playing) artists else "Paused · $artists"))
             if (playing && durationSeconds > 0) putJsonObject("timestamps") {
                 put("start", start)
@@ -137,21 +137,21 @@ object DiscordPresence {
         putJsonObject("assets") {
             val cover = track?.thumbnailUrl?.takeIf { it.startsWith("https://") && it.length <= 256 }
             put("large_image", cover ?: LOGO)
-            put("large_text", fit(track?.album ?: track?.title ?: "K4 Audio"))
+            put("large_text", fit(track?.album ?: track?.title ?: "OpenMusic"))
             if (cover != null) {
                 put("small_image", LOGO)
-                put("small_text", if (playing) "K4 Audio" else "Paused")
+                put("small_text", if (playing) "OpenMusic" else "Paused")
             }
         }
         // Discord allows two: the app's website and the developer's.
         putJsonArray("buttons") {
             addJsonObject {
-                put("label", "Get K4 Audio")
-                put("url", "https://k4audio.vercel.app")
+                put("label", "Get OpenMusic")
+                put("url", "https://rupeshh.pages.dev")
             }
             addJsonObject {
                 put("label", "Meet the Developer")
-                put("url", "https://kartiklangwan.vercel.app")
+                put("url", "https://rupeshh.pages.dev")
             }
         }
     }

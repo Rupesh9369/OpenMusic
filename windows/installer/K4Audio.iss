@@ -1,4 +1,4 @@
-; K4 Audio for Windows — installer, updater and uninstaller.
+﻿; OpenMusic for Windows â€” installer, updater and uninstaller.
 ; Built by `gradlew -p windows packageInstaller`, which passes AppVersion, AppImage, OutDir and RepoRoot.
 
 #ifndef AppVersion
@@ -8,17 +8,17 @@
   #define RepoRoot "..\.."
 #endif
 #ifndef AppImage
-  #define AppImage RepoRoot + "\windows\build\compose\binaries\main\app\K4 Audio"
+  #define AppImage RepoRoot + "\windows\build\compose\binaries\main\app\OpenMusic"
 #endif
 #ifndef OutDir
   #define OutDir RepoRoot + "\windows\build\installer"
 #endif
 
-#define AppName "K4 Audio"
-#define AppExe "K4 Audio.exe"
+#define AppName "OpenMusic"
+#define AppExe "OpenMusic.exe"
 ; The running app holds this mutex (SingleInstance.kt); the id matches the app's AppUserModelID.
-#define AppMutexName "K4AudioAppMutex"
-#define AppUserModelID "KartikLangwan.K4Audio"
+#define AppMutexName "OpenMusicAppMutex"
+#define AppUserModelID "Rupesh.OpenMusic"
 #define UninstallKey "Software\Microsoft\Windows\CurrentVersion\Uninstall\{6F1D2B7A-4E3C-4A8B-9C21-5D7E3A9B1C04}_is1"
 
 [Setup]
@@ -27,15 +27,15 @@ AppId={{6F1D2B7A-4E3C-4A8B-9C21-5D7E3A9B1C04}
 AppName={#AppName}
 AppVersion={#AppVersion}
 AppVerName={#AppName} {#AppVersion}
-AppPublisher=Kartik Langwan
-AppPublisherURL=https://k4audio.vercel.app
-AppSupportURL=https://k4audio.vercel.app
-AppUpdatesURL=https://k4audio.vercel.app
-AppCopyright=© 2026 Kartik Langwan
+AppPublisher=Rupesh
+AppPublisherURL=https://rupeshh.pages.dev
+AppSupportURL=https://rupeshh.pages.dev
+AppUpdatesURL=https://rupeshh.pages.dev
+AppCopyright=Â© 2026 Rupesh
 VersionInfoVersion={#AppVersion}.0
 VersionInfoProductName={#AppName}
 VersionInfoDescription={#AppName} Setup
-VersionInfoCompany=Kartik Langwan
+VersionInfoCompany=Rupesh
 ; Per-user by default (no admin prompt, and yt-dlp can update itself); "all users" stays available.
 PrivilegesRequired=lowest
 PrivilegesRequiredOverridesAllowed=dialog
@@ -45,8 +45,8 @@ DisableProgramGroupPage=yes
 DisableWelcomePage=no
 LicenseFile={#RepoRoot}\LICENSE
 OutputDir={#OutDir}
-OutputBaseFilename=K4Audio-Setup-{#AppVersion}
-SetupIconFile={#RepoRoot}\windows\icons\k4audio.ico
+OutputBaseFilename=OpenMusic-Setup-{#AppVersion}
+SetupIconFile={#RepoRoot}\windows\icons\openmusic.ico
 UninstallDisplayIcon={app}\{#AppExe}
 UninstallDisplayName={#AppName}
 WizardStyle=modern
@@ -55,7 +55,7 @@ SolidCompression=yes
 ArchitecturesAllowed=x64compatible
 ArchitecturesInstallIn64BitMode=x64compatible
 MinVersion=10.0
-; A running K4 Audio is closed by the [Code] below (politely first); Restart Manager is the backstop.
+; A running OpenMusic is closed by the [Code] below (politely first); Restart Manager is the backstop.
 CloseApplications=yes
 RestartApplications=no
 
@@ -75,7 +75,7 @@ Name: "catalan"; MessagesFile: "compiler:Languages\Catalan.isl"
 
 [Tasks]
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"
-Name: "startup"; Description: "Start K4 Audio (minimized) when I sign in to Windows"; GroupDescription: "Startup:"; Flags: unchecked
+Name: "startup"; Description: "Start OpenMusic (minimized) when I sign in to Windows"; GroupDescription: "Startup:"; Flags: unchecked
 
 [Registry]
 ; The same value the app's own "Start with Windows" switch writes (StartupManager.kt); unchecked unless chosen here.
@@ -128,7 +128,7 @@ begin
   Result := CheckForMutexes('{#AppMutexName}');
 end;
 
-{ Asks a running K4 Audio to quit (it saves the queue and settings). True once it is gone.
+{ Asks a running OpenMusic to quit (it saves the queue and settings). True once it is gone.
   Never force-kill it (taskkill): Windows Smart App Control then blocks this whole installer.
   A version that does not know --quit is left to Restart Manager (CloseApplications). }
 function CloseRunningApp(Exe: String): Boolean;
@@ -240,7 +240,7 @@ begin
     RegDeleteValue(HKCU, 'Software\Microsoft\Windows\CurrentVersion\Run', 'K4Audio');
   // The library is the user's data: keep it unless they say otherwise (never asked in silent mode).
   if (CurUninstallStep = usPostUninstall) and (not UninstallSilent) then
-    if MsgBox('Also delete your K4 Audio library, playlists, settings and downloads?' + #13#10 +
+    if MsgBox('Also delete your OpenMusic library, playlists, settings and downloads?' + #13#10 +
               'Choose No to keep them for a future install.',
               mbConfirmation, MB_YESNO or MB_DEFBUTTON2) = IDYES then
     begin

@@ -125,6 +125,7 @@ enum class BackgroundStyle {
     Alpine,
     Aurora,
     PureBlack,
+    Glass,
     Accent,
     Image;
 
@@ -141,6 +142,9 @@ enum class NavPosition { Side, Bottom }
 
 enum class Reverb { None, SmallRoom, LargeHall }
 
+/** 2D is the normal stereo sound; 3D widens it; 8D and 16D move the sound around the head (a full turn every 8 or 16 seconds). */
+enum class SpatialMode { Normal, Three, Eight, Sixteen }
+
 /** Browser whose YouTube sign-in yt-dlp borrows when YouTube asks it to prove it is not a bot. */
 enum class YtCookies(val browser: String?) { None(null), Chrome("chrome"), Edge("edge"), Firefox("firefox") }
 
@@ -156,7 +160,7 @@ object Settings : SettingsStore({ AppPaths.settings }) {
     var muted by boolean(false)
     /** Sound output: "auto" follows the Windows default, else mpv's device id (speakers, Bluetooth…). */
     var audioDevice by string("auto")
-    /** "Playing K4 Audio" on Discord (see DiscordPresence). Off by default: it shares what you listen to. */
+    /** "Playing OpenMusic" on Discord (see DiscordPresence). Off by default: it shares what you listen to. */
     var discordPresence by boolean(false)
     /** Daily update check: when it last ran, and the version already offered (asked once). */
     var updateCheckedAt by long(0L)
@@ -179,9 +183,12 @@ object Settings : SettingsStore({ AppPaths.settings }) {
     /** Ten band gains in dB (31 Hz … 16 kHz), comma separated. */
     var equalizerGains by string("0,0,0,0,0,0,0,0,0,0")
     var equalizerPreset by string("Flat")
+    /** A version the user chose to skip in the update popup. */
+    var skippedUpdateVersion by string("")
     var bassBoost by int(0)          // 0..100
     var wideStage by int(0)          // 0..100
     var reverb by enum(Reverb.None)
+    var spatial by enum(SpatialMode.Normal)
 
     var isShowingLyrics by boolean(false)
     var isShowingSynchronizedLyrics by boolean(true)

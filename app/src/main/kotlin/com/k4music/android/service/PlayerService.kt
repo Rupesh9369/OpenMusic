@@ -430,6 +430,7 @@ class PlayerService : InvincibleService(), Player.Listener, PlaybackStatsListene
             subscribe(PlayerPreferences.virtualizerModeProperty) { audioEffects.apply() }
             subscribe(PlayerPreferences.virtualizerStrengthProperty) { audioEffects.apply() }
             subscribe(PlayerPreferences.stereoWideningProperty) { audioEffects.apply() }
+            subscribe(PlayerPreferences.spatialModeProperty) { audioEffects.apply() }
             subscribe(PlayerPreferences.shuffleEnabledProperty) { enabled ->
                 if (enabled && !player.shuffleModeEnabled) player.shuffleFromCurrent()
                 player.shuffleModeEnabled = enabled
@@ -1395,7 +1396,7 @@ class PlayerService : InvincibleService(), Player.Listener, PlaybackStatsListene
                 )
                 .setAudioProcessorChain(
                     DefaultAudioProcessorChain(
-                        arrayOf(audioEffects.widener),
+                        arrayOf(audioEffects.widener, audioEffects.panner),
                         SilenceSkippingAudioProcessor(
                             /* minimumSilenceDurationUs = */
                             minimumSilenceDuration,

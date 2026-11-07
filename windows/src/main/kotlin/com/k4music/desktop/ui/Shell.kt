@@ -284,7 +284,7 @@ private fun TopBar(navigator: Navigator, searchFocus: FocusRequester, fullscreen
                 onClick = onToggleFullscreen
             )
             RoundIcon(Res.drawable.settings, stringResource(Res.string.settings), true, selected = navigator.current == Screen.Settings) {
-                navigator.root(Screen.Settings)
+                if (navigator.current == Screen.Settings) navigator.root(Screen.Home) else navigator.root(Screen.Settings)
             }
         }
     }
@@ -406,7 +406,7 @@ private fun SidePanelColumn(navigator: Navigator, collapsed: Boolean, width: Dp)
                     horizontalArrangement = if (collapsed) Arrangement.Center else Arrangement.spacedBy(12.dp)
                 ) {
                     androidx.compose.foundation.Image(
-                        painterResource(Res.drawable.k4_logo),
+                        painterResource(Res.drawable.openmusic_tile),
                         contentDescription = if (collapsed) stringResource(Res.string.app_name) else null,
                         modifier = Modifier.size(40.dp).clip(RoundedCornerShape(11.dp))
                     )

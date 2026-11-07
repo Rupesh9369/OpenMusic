@@ -227,7 +227,7 @@ object LibraryTransfer {
             val input = DataInputStream(socket.getInputStream().buffered())
             val out = DataOutputStream(socket.getOutputStream())
             val doc = runCatching {
-                check(input.readInt() == MAGIC) { "Not K4 Audio" }
+                check(input.readInt() == MAGIC) { "Not OpenMusic" }
                 val size = input.readInt()
                 check(size in 1..MAX_BYTES) { "Too large" }
                 unpack(ByteArray(size).also(input::readFully), crypto)

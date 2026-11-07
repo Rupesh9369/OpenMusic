@@ -51,6 +51,7 @@ import com.k4music.desktop.player.StreamSource
 import com.k4music.desktop.player.formatDuration
 import com.k4music.desktop.prefs.RepeatMode
 import com.k4music.desktop.prefs.Settings
+import com.k4music.desktop.prefs.SpatialMode
 import com.k4music.desktop.res.Res
 import com.k4music.desktop.res.desktop_mute
 import com.k4music.desktop.res.desktop_playing_from_saavn
@@ -320,6 +321,24 @@ fun SeekBar(player: PlayerController, duration: Double, enabled: Boolean, modifi
     }
 }
 
+/** One click cycles 2D, 3D, 8D, 16D on the playing audio. */
+@Composable
+private fun SpatialChip(player: PlayerController) {
+    val mode = Settings.spatial
+    val next = SpatialMode.entries[(mode.ordinal + 1) % SpatialMode.entries.size]
+    val label = when (mode) { SpatialMode.Normal -> "2D"; SpatialMode.Three -> "3D"; SpatialMode.Eight -> "8D"; SpatialMode.Sixteen -> "16D" }
+    Text(
+        label,
+        style = MaterialTheme.typography.labelSmall,
+        fontWeight = FontWeight.Bold,
+        color = if (mode == SpatialMode.Normal) MaterialTheme.colorScheme.onSurfaceVariant else MaterialTheme.colorScheme.primary,
+        modifier = Modifier
+            .clip(RoundedCornerShape(6.dp))
+            .clickable { Settings.spatial = next; player.applyEffects() }
+            .padding(horizontal = 6.dp, vertical = 4.dp)
+    )
+}
+
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun Volume(player: PlayerController, modifier: Modifier = Modifier) {
@@ -336,6 +355,7 @@ fun Volume(player: PlayerController, modifier: Modifier = Modifier) {
             }
         }
     ) {
+        SpatialChip(player)
         ToggleIcon(
             Res.drawable.volume_up,
             stringResource(if (muted) Res.string.desktop_unmute else Res.string.desktop_mute),

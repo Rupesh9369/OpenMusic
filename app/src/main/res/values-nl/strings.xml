@@ -112,7 +112,7 @@
     <string name="no_browser_installed">Kan geen applicatie vinden om het internet te browsen</string>
     <string name="no_equalizer_installed">Kan geen applicatie vinden om audio bij te stellen</string>
     <string name="no_file_chooser_installed">Kan geen applicatie vinden om bestanden te maken</string>
-    <string name="no_battery_optimization_settings_found">Kan geen batterij optimalisatie instellingen vinden, maak handmatig een uitzondering voor K4 Audio</string>
+    <string name="no_battery_optimization_settings_found">Kan geen batterij optimalisatie instellingen vinden, maak handmatig een uitzondering voor OpenMusic</string>
     <string name="related_albums">Gerelateerde albums</string>
     <string name="similar_artists">Vergelijkbare artiesten</string>
     <string name="recommended_playlists">Afspeelijsten die je misschien leuk vindt</string>
@@ -148,7 +148,7 @@
     <string name="view_album">Toon album</string>
     <string name="view_playlist">Toon afspeellijst</string>
     <string name="search_placeholder">Zoek…</string>
-    <string name="format_version_credits">v%1$s door Kartik Langwan</string>
+    <string name="format_version_credits">v%1$s door Rupesh</string>
     <string name="social">Sociaal</string>
     <string name="contact">Contact</string>
     <string name="github">GitHub</string>
@@ -223,7 +223,7 @@
     <string name="backup_description">Persoonlijke voorkeuren (bijvoorbeeld het thema) en de cache worden niet opgeslagen.</string>
     <string name="backup_action_description">Exporteer de database naar de externe opslag</string>
     <string name="restore">Herstellen</string>
-    <string name="restore_warning">Bestaande data zal worden vervangen. K4 Audio sluit zichzelf automatisch nadat de database is hersteld.</string>
+    <string name="restore_warning">Bestaande data zal worden vervangen. OpenMusic sluit zichzelf automatisch nadat de database is hersteld.</string>
     <string name="restore_description">Importeer de database van de externe opslag</string>
     <string name="other">Overig</string>
     <string name="android_auto">Android Auto</string>

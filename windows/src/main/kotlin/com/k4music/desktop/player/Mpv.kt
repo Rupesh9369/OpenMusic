@@ -13,7 +13,7 @@ import java.util.concurrent.locks.ReentrantReadWriteLock
 /** A sound output: mpv's id ("auto" or "wasapi/{…}") and the name Windows shows. */
 data class AudioDevice(val name: String, val description: String)
 
-/** The small slice of libmpv's client API that K4 Audio uses (mpv/client.h). */
+/** The small slice of libmpv's client API that OpenMusic uses (mpv/client.h). */
 @Suppress("FunctionName", "LocalVariableName")
 internal interface LibMpv : Library {
     fun mpv_create(): Pointer?
@@ -145,7 +145,7 @@ class Mpv(private val libraryDir: java.io.File) : AutoCloseable {
             "idle" to "yes", "keep-open" to "no",
             // Reads the whole song ahead (a skip to anywhere plays at once) and keeps what was played.
             "cache" to "yes", "demuxer-max-bytes" to "16MiB", "demuxer-max-back-bytes" to "16MiB", "cache-pause-wait" to "0.5",
-            "network-timeout" to "15", "audio-client-name" to "K4 Audio",
+            "network-timeout" to "15", "audio-client-name" to "OpenMusic",
             "volume-max" to "100", "gapless-audio" to "weak",
             // YouTube throttles one long download; ranged requests (as ExoPlayer makes) arrive at full speed.
             "curl-max-request-size" to "1MiB"

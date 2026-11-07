@@ -3,7 +3,12 @@ package com.k4music.android.ui.screens.settings
 import android.content.Context
 import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.ui.draw.clip
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
@@ -24,6 +29,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalUriHandler
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.work.CoroutineWorker
@@ -39,7 +45,7 @@ import com.k4music.core.ui.LocalAppearance
 import kotlin.time.Duration
 
 // Retain the class for workers already persisted by older installations.
-// Cancel old update checks until a verified K4 Audio release repository exists.
+// Cancel old update checks until a verified OpenMusic release repository exists.
 class VersionCheckWorker(context: Context, params: WorkerParameters) : CoroutineWorker(context, params) {
     companion object {
         fun upsert(context: Context, period: Duration?) = runCatching {
@@ -73,7 +79,10 @@ fun About() = SettingsCategoryScreen(
         modifier = Modifier.padding(horizontal = 20.dp, vertical = 12.dp).fillMaxWidth()
     ) {
         Column(Modifier.padding(24.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
+            Image(painterResource(R.drawable.openmusic_tile), contentDescription = null, modifier = Modifier.size(120.dp).clip(RoundedCornerShape(24.dp)))
             Text(Brand.APP_NAME, style = MaterialTheme.typography.headlineLarge, color = palette.text)
+            Text(Brand.FULL_NAME, style = MaterialTheme.typography.titleSmall, color = palette.textSecondary)
+            Image(painterResource(R.drawable.creator_photo), contentDescription = Brand.CREATOR, modifier = Modifier.size(96.dp).clip(CircleShape))
             Text(Brand.CREATOR, style = MaterialTheme.typography.titleMedium, color = palette.accent)
             Text(stringResource(R.string.app_tagline), style = MaterialTheme.typography.bodyMedium, color = palette.textSecondary)
         }
@@ -81,7 +90,7 @@ fun About() = SettingsCategoryScreen(
     SettingsGroup(title = stringResource(R.string.creator)) {
         SettingsEntry(
             title = stringResource(R.string.website),
-            text = "kartiklangwan.vercel.app",
+            text = "rupeshh.pages.dev",
             onClick = { openLink(Brand.WEBSITE_URL) }
         )
         SettingsEntry(
@@ -91,7 +100,7 @@ fun About() = SettingsCategoryScreen(
         )
         SettingsEntry(
             title = "GitHub",
-            text = "KartikLangwan/K4Audio",
+            text = "Rupesh9369/OpenMusic",
             onClick = { openLink(Brand.GITHUB_URL) }
         )
     }

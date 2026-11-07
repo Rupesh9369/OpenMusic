@@ -104,6 +104,10 @@ fun BoxScope.WindowBackdrop(ambient: Color) {
     val dark = colors.background.luminance() < 0.5f
 
     when (Settings.backgroundStyle) {
+        BackgroundStyle.Glass -> {
+            Box(Modifier.matchParentSize().background(Color(0xFF0A0C12)))
+            Box(Modifier.matchParentSize().background(Brush.verticalGradient(listOf(Color.White.copy(alpha = 0.14f), Color.White.copy(alpha = 0.03f), Color.White.copy(alpha = 0.10f)))))
+        }
         BackgroundStyle.PureBlack -> {
             Box(Modifier.matchParentSize().background(Color.Black))
         }

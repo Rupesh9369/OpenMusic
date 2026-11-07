@@ -249,7 +249,7 @@ class StreamResolver {
             *(if (extractorArgs != null) arrayOf("--extractor-args", extractorArgs) else emptyArray()),
             "https://www.youtube.com/watch?v=$videoId"
         ).apply {
-            // yt-dlp unpacks itself into TEMP; keep that inside K4 Audio's own folder.
+            // yt-dlp unpacks itself into TEMP; keep that inside OpenMusic's own folder.
             environment()["TEMP"] = temp.absolutePath
             environment()["TMP"] = temp.absolutePath
         }.start()

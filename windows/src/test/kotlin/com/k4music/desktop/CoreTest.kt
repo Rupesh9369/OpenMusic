@@ -51,8 +51,8 @@ class CoreTest {
 
     @Test
     fun startupCommandQuotesPathsWithSpacesWithoutChangingTheRegistry() {
-        assertEquals("\"C:\\Program Files\\K4 Audio\\K4 Audio.exe\" --startup",
-            StartupManager.startupCommand("C:\\Program Files\\K4 Audio\\K4 Audio.exe"))
+        assertEquals("\"C:\\Program Files\\OpenMusic\\OpenMusic.exe\" --startup",
+            StartupManager.startupCommand("C:\\Program Files\\OpenMusic\\OpenMusic.exe"))
     }
 
     @Test
@@ -79,7 +79,7 @@ class StartupRegistryTest {
         StartupManager.runKey = "HKCU\\Software\\K4AudioTest-${System.nanoTime()}"
         try {
             assertFalse(StartupManager.isEnabled())
-            assertTrue(StartupManager.setEnabled(true, "C:/Program Files/K4 Audio/K4 Audio.exe"), StartupManager.lastError)
+            assertTrue(StartupManager.setEnabled(true, "C:/Program Files/OpenMusic/OpenMusic.exe"), StartupManager.lastError)
             assertTrue(StartupManager.isEnabled())
             assertTrue(StartupManager.setEnabled(false))
             assertFalse(StartupManager.isEnabled())

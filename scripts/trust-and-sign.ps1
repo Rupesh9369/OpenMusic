@@ -19,8 +19,8 @@ param(
 
 $ErrorActionPreference = "Stop"
 
-$CertSubject = "CN=K4 Audio Development CA"
-Write-Host "==> Checking for K4 Audio Code Signing Certificate..." -ForegroundColor Cyan
+$CertSubject = "CN=OpenMusic Development CA"
+Write-Host "==> Checking for OpenMusic Code Signing Certificate..." -ForegroundColor Cyan
 
 $cert = Get-ChildItem -Path Cert:\CurrentUser\My | Where-Object { $_.Subject -eq $CertSubject } | Select-Object -First 1
 
@@ -78,12 +78,12 @@ if ($TargetFile -and (Test-Path $TargetFile)) {
     $scriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
     $repoRoot = Split-Path -Parent $scriptDir
 
-    $appExe = Join-Path $repoRoot "windows\build\compose\binaries\main\app\K4 Audio\K4 Audio.exe"
+    $appExe = Join-Path $repoRoot "windows\build\compose\binaries\main\app\OpenMusic\OpenMusic.exe"
     if (Test-Path $appExe) { $filesToSign += $appExe }
 
     $installerDir = Join-Path $repoRoot "windows\build\installer"
     if (Test-Path $installerDir) {
-        $installers = Get-ChildItem -Path $installerDir -Filter "K4Audio-Setup-*.exe"
+        $installers = Get-ChildItem -Path $installerDir -Filter "OpenMusic-Setup-*.exe"
         foreach ($inst in $installers) { $filesToSign += $inst.FullName }
     }
 }

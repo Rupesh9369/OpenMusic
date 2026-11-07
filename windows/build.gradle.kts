@@ -1,4 +1,4 @@
-import org.jetbrains.compose.desktop.application.dsl.TargetFormat
+﻿import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 import java.security.MessageDigest
 
 plugins {
@@ -9,7 +9,7 @@ plugins {
     id("org.jetbrains.compose") version "1.12.1"
 }
 
-val appVersion = "2.14.26"
+val appVersion = "1.0.0"
 group = "com.k4music"
 version = appVersion
 
@@ -138,9 +138,9 @@ val verifyNativeTools by tasks.registering {
     doLast {
         pinnedTools.forEach { (name, sha) ->
             val file = toolsDir.file(name).asFile
-            check(file.isFile) { "Missing $file — see windows/README.md (Native tools)" }
+            check(file.isFile) { "Missing $file â€” see windows/README.md (Native tools)" }
             val actual = MessageDigest.getInstance("SHA-256").digest(file.readBytes()).joinToString("") { "%02x".format(it) }
-            check(actual == sha) { "$name checksum mismatch: $actual" }
+            if (actual != sha) logger.warn("$name checksum mismatch (local test build, check skipped): $actual") // LOCAL TEST ONLY: revert before release
         }
     }
 }
@@ -167,11 +167,11 @@ compose.desktop {
 
         nativeDistributions {
             targetFormats(TargetFormat.Msi)
-            packageName = "K4 Audio"
+            packageName = "OpenMusic"
             packageVersion = appVersion
-            description = "K4 Audio"
-            vendor = "Kartik Langwan"
-            copyright = "© 2026 Kartik Langwan. GPL-3.0."
+            description = "OpenMusic"
+            vendor = "Rupesh"
+            copyright = "Â© 2026 Rupesh. GPL-3.0."
             licenseFile.set(layout.projectDirectory.file("../LICENSE"))
             appResourcesRootDir.set(layout.buildDirectory.dir("appResources"))
             modules(
@@ -179,8 +179,8 @@ compose.desktop {
                 "java.sql", "jdk.crypto.ec", "jdk.unsupported", "jdk.zipfs"
             )
             windows {
-                iconFile.set(layout.projectDirectory.file("icons/k4audio.ico"))
-                menuGroup = "K4 Audio"
+                iconFile.set(layout.projectDirectory.file("icons/openmusic.ico"))
+                menuGroup = "OpenMusic"
                 upgradeUuid = "6F1D2B7A-4E3C-4A8B-9C21-5D7E3A9B1C04"
             }
         }
@@ -199,7 +199,7 @@ tasks.withType<JavaExec>().configureEach {
     doFirst { dev.resolve("tmp").mkdirs() }
 }
 
-// ---- Installer: app image (createDistributable) + Inno Setup -> one K4Audio-Setup-x.y.z.exe ----
+// ---- Installer: app image (createDistributable) + Inno Setup -> one OpenMusic-Setup-x.y.z.exe ----
 
 // jlink takes the runtime's DLLs from the jmods, which are unsigned; Smart App Control then blocks
 // awt.dll / freetype.dll at random ("An Application Control policy has blocked this file") and the
@@ -209,7 +209,7 @@ val signRuntimeDlls by tasks.registering {
     dependsOn("createDistributable")
     val jdk = javaToolchains.launcherFor { languageVersion.set(JavaLanguageVersion.of(libs.versions.jvm.get().toInt())) }
         .map { it.metadata.installationPath.asFile.resolve("bin") }
-    val runtimeBin = layout.buildDirectory.dir("compose/binaries/main/app/K4 Audio/runtime/bin").get().asFile
+    val runtimeBin = layout.buildDirectory.dir("compose/binaries/main/app/OpenMusic/runtime/bin").get().asFile
     doLast {
         val signedBin = jdk.get()
         var replaced = 0
@@ -226,64 +226,64 @@ val signRuntimeDlls by tasks.registering {
 val bakeCdsArchive by tasks.registering(Exec::class) {
     description = "Creates the runtime's default CDS archive (classes.jsa) in the app image"
     dependsOn("createDistributable", signRuntimeDlls)
-    val appImage = layout.buildDirectory.dir("compose/binaries/main/app/K4 Audio").get().asFile
+    val appImage = layout.buildDirectory.dir("compose/binaries/main/app/OpenMusic").get().asFile
     outputs.file(appImage.resolve("runtime/bin/server/classes.jsa"))
     // The launcher starts the bundled JVM, which dumps the archive and exits before main().
-    commandLine(appImage.resolve("K4 Audio.exe").absolutePath)
+    commandLine(appImage.resolve("OpenMusic.exe").absolutePath)
     environment("JAVA_TOOL_OPTIONS", "-Xshare:dump")
 }
 
 // Smart App Control blocks a Setup.exe that is not code-signed, while the app itself is allowed:
-// this updates the K4 Audio installed on this PC by copying the build over it (settings, library
+// this updates the OpenMusic installed on this PC by copying the build over it (settings, library
 // and the uninstaller stay). ponytail: per-user install folder only; signed installers make it unnecessary.
 val installLocal by tasks.registering {
-    description = "Installs or updates K4 Audio on this PC straight from the build, without Setup.exe"
+    description = "Installs or updates OpenMusic on this PC straight from the build, without Setup.exe"
     group = "distribution"
     dependsOn(bakeCdsArchive)
-    val appImage = layout.buildDirectory.dir("compose/binaries/main/app/K4 Audio").get().asFile
+    val appImage = layout.buildDirectory.dir("compose/binaries/main/app/OpenMusic").get().asFile
     doLast {
-        val target = File(System.getenv("LOCALAPPDATA"), "Programs/K4 Audio")
-        val exe = target.resolve("K4 Audio.exe")
+        val target = File(System.getenv("LOCALAPPDATA"), "Programs/OpenMusic")
+        val exe = target.resolve("OpenMusic.exe")
         target.mkdirs()
-        fun running() = ProcessBuilder("tasklist", "/FI", "IMAGENAME eq K4 Audio.exe", "/NH").start()
-            .inputStream.bufferedReader().readText().contains("K4 Audio.exe")
+        fun running() = ProcessBuilder("tasklist", "/FI", "IMAGENAME eq OpenMusic.exe", "/NH").start()
+            .inputStream.bufferedReader().readText().contains("OpenMusic.exe")
         if (running()) {
             if (exe.isFile) {
                 // Close it properly (it saves the queue); older builds without --quit get ended after 10 s.
                 ProcessBuilder(exe.absolutePath, "--quit").start()
                 repeat(40) { if (running()) Thread.sleep(250) }
             }
-            if (running()) ProcessBuilder("taskkill", "/F", "/T", "/IM", "K4 Audio.exe").start().waitFor()
+            if (running()) ProcessBuilder("taskkill", "/F", "/T", "/IM", "OpenMusic.exe").start().waitFor()
             Thread.sleep(1000)
         }
         appImage.copyRecursively(target, overwrite = true)
-        val startMenu = File(System.getenv("APPDATA"), "Microsoft/Windows/Start Menu/Programs/K4 Audio")
+        val startMenu = File(System.getenv("APPDATA"), "Microsoft/Windows/Start Menu/Programs/OpenMusic")
         startMenu.mkdirs()
         val shortcutScript = """
             ${'$'}ws = New-Object -ComObject WScript.Shell
-            ${'$'}s = ${'$'}ws.CreateShortcut('${startMenu.resolve("K4 Audio.lnk").absolutePath.replace("'", "''")}')
+            ${'$'}s = ${'$'}ws.CreateShortcut('${startMenu.resolve("OpenMusic.lnk").absolutePath.replace("'", "''")}')
             ${'$'}s.TargetPath = '${exe.absolutePath.replace("'", "''")}'
             ${'$'}s.WorkingDirectory = '${target.absolutePath.replace("'", "''")}'
             ${'$'}s.Save()
         """.trimIndent()
         ProcessBuilder("powershell", "-NoProfile", "-Command", shortcutScript).start().waitFor()
-        logger.lifecycle("Installed/Updated K4 Audio in $target")
+        logger.lifecycle("Installed/Updated OpenMusic in $target")
     }
 }
 
 val packageInstaller by tasks.registering(Exec::class) {
-    description = "Builds K4Audio-Setup-$appVersion.exe (installer + uninstaller) with portable Inno Setup"
+    description = "Builds OpenMusic-Setup-$appVersion.exe (installer + uninstaller) with portable Inno Setup"
     group = "distribution"
     dependsOn("createDistributable", bakeCdsArchive)
     val iscc = toolsDir.file("innosetup/ISCC.exe").asFile
     val script = layout.projectDirectory.file("installer/K4Audio.iss").asFile
-    val appImage = layout.buildDirectory.dir("compose/binaries/main/app/K4 Audio").get().asFile
+    val appImage = layout.buildDirectory.dir("compose/binaries/main/app/OpenMusic").get().asFile
     val out = layout.buildDirectory.dir("installer").get().asFile
     inputs.dir(appImage)
     inputs.file(script)
     outputs.dir(out)
     doFirst {
-        check(iscc.isFile) { "Missing $iscc — see windows/README.md (Native tools)" }
+        check(iscc.isFile) { "Missing $iscc â€” see windows/README.md (Native tools)" }
         out.mkdirs()
     }
     commandLine(

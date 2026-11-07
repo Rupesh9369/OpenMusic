@@ -39,7 +39,7 @@ object LocalMusic {
 
     fun folders(): List<File> = configuredFolders().filter { it.isDirectory }
 
-    /** K4 Audio's own folder inside the user's Music folder: drop songs here and they show up in Local. */
+    /** OpenMusic's own folder inside the user's Music folder: drop songs here and they show up in Local. */
     val appFolder: File get() = File(System.getProperty("user.home"), "Music/K4 Audio")
 
     /** Creates [appFolder] (inside the scanned Music folder) so it is always there to open. */
@@ -105,7 +105,7 @@ object LocalMusic {
     private fun loadSignatures() = Properties().also { p -> runCatching { signatureFile.inputStream().use(p::load) } }
 
     private fun saveSignatures(signatures: Properties) {
-        runCatching { signatureFile.outputStream().use { signatures.store(it, "K4 Audio local scan") } }
+        runCatching { signatureFile.outputStream().use { signatures.store(it, "OpenMusic local scan") } }
     }
 
     private fun read(file: File): Track {

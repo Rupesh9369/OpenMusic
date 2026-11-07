@@ -104,6 +104,7 @@ import com.k4music.desktop.res.desktop_update_error
 import com.k4music.desktop.res.desktop_update_now
 import com.k4music.desktop.res.desktop_update_website
 import com.k4music.desktop.res.desktop_update_later
+import com.k4music.desktop.res.desktop_update_skip
 import org.jetbrains.compose.resources.getString
 import org.jetbrains.compose.resources.pluralStringResource
 import org.jetbrains.compose.resources.stringResource
@@ -440,65 +441,34 @@ private fun ManualMatchDialog(track: com.k4music.android.playlistimport.FailedTr
 }
 
 /**
- * "K4 Audio X is available": downloads the installer with a progress bar and starts it (the
+ * "OpenMusic X is available": downloads the installer with a progress bar and starts it (the
  * installer closes the app, updates it and opens it again). Without a Windows installer in the
  * release, it offers the website instead.
  */
 @Composable
 private fun UpdateDialog(update: com.k4music.desktop.Updater.Update) {
-    val scope = rememberCoroutineScope()
-    var transfer by remember { mutableStateOf<kotlinx.coroutines.Job?>(null) }
-    var progress by remember { mutableStateOf<Float?>(null) }
-    var failed by remember { mutableStateOf(false) }
-    var starting by remember { mutableStateOf(false) }
-    val busy = progress != null && !failed
     AlertDialog(
-        onDismissRequest = { transfer?.cancel(); AppDialogs.current = null },
-        title = { Text(stringResource(Res.string.desktop_update_title, update.version)) },
+        onDismissRequest = { AppDialogs.current = null },
+        title = { Text(update.title ?: stringResource(Res.string.desktop_update_title, update.version)) },
         text = {
             Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
                 Text(stringResource(Res.string.desktop_update_body, com.k4music.desktop.Updater.currentVersion))
                 update.notes?.takeIf { it.isNotBlank() }?.let { notes ->
-                    Text(
-                        notes, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant,
-                        maxLines = 12, overflow = androidx.compose.ui.text.style.TextOverflow.Ellipsis
-                    )
+                    Text(notes, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
                 }
-                progress?.let { p ->
-                    Text(stringResource(if (starting) Res.string.desktop_update_starting else Res.string.desktop_update_downloading), style = MaterialTheme.typography.bodySmall)
-                    androidx.compose.material3.LinearProgressIndicator(progress = { p }, modifier = Modifier.fillMaxWidth())
-                }
-                if (failed) Text(stringResource(Res.string.desktop_update_error), color = MaterialTheme.colorScheme.error)
             }
         },
         confirmButton = {
-            if (update.installerUrl != null) K4Button(enabled = !busy, onClick = {
-                failed = false
-                progress = 0f
-                transfer = scope.launch {
-                    try {
-                    // Starting the installer can fail too (Windows Smart App Control blocks unsigned installers).
-                    runCatching {
-                        val file = com.k4music.desktop.Updater.download(update) { progress = it }
-                        starting = true
-                        com.k4music.desktop.Updater.install(file)
-                    }.onSuccess { AppDialogs.current = null }
-                        .onFailure {
-                            if (it is kotlinx.coroutines.CancellationException) throw it
-                            com.k4music.desktop.AppLog.w("Updater", "Update failed", it); starting = false; failed = true
-                        }
-                    } finally { progress = null }
-                }
-            }) { Text(stringResource(Res.string.desktop_update_now)) }
-            else K4Button(onClick = {
+            K4Button(onClick = {
                 AppDialogs.current = null
-                runCatching { java.awt.Desktop.getDesktop().browse(java.net.URI(com.k4music.desktop.ui.screens.WEBSITE)) }
-            }) { Text(stringResource(Res.string.desktop_update_website)) }
+                runCatching { java.awt.Desktop.getDesktop().browse(java.net.URI(update.installerUrl ?: com.k4music.desktop.ui.screens.WEBSITE)) }
+            }) { Text(update.updateLabel ?: stringResource(Res.string.desktop_update_now)) }
         },
         dismissButton = {
-            TextButton(onClick = { transfer?.cancel(); AppDialogs.current = null }) {
-                Text(stringResource(if (busy) Res.string.cancel else Res.string.desktop_update_later))
-            }
+            TextButton(onClick = {
+                com.k4music.desktop.prefs.Settings.skippedUpdateVersion = update.version
+                AppDialogs.current = null
+            }) { Text(update.skipLabel ?: stringResource(Res.string.desktop_update_skip)) }
         }
     )
 }

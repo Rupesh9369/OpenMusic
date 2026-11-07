@@ -92,7 +92,7 @@ fun UserGuide() {
                             )
                         }
                         BasicText(
-                            text = "Welcome to K4 Audio",
+                            text = "Welcome to OpenMusic",
                             style = typography.m.bold.copy(color = Color.White)
                         )
                     }

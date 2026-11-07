@@ -4,14 +4,14 @@
     <string name="settings_backup_title">Backup &amp; restore</string>
     <string name="settings_backup_summary">Save your library to a file or bring it back</string>
 
-    <string name="faq_q_playstore">Why isn’t K4 Audio on the Play Store?</string>
-    <string name="faq_a_playstore">K4 Audio plays songs from YouTube Music and JioSaavn. The Play Store doesn’t allow apps that stream from these services without an official licence, so K4 Audio is shared as a free APK from kartiklangwan.vercel.app instead. It has no ads, no account and no tracking.</string>
+    <string name="faq_q_playstore">Why isn’t OpenMusic on the Play Store?</string>
+    <string name="faq_a_playstore">OpenMusic plays songs from YouTube Music and JioSaavn. The Play Store doesn’t allow apps that stream from these services without an official licence, so OpenMusic is shared as a free APK from rupeshh.pages.dev instead. It has no ads, no account and no tracking.</string>
 
     <string name="faq_q_update">How do I update to a new version?</string>
-    <string name="faq_a_update">Download the latest APK from the website and install it over the current app. Your favourites, playlists and history stay as they are.\n\nIf Android says “App not installed” or that the package conflicts: first make a backup (Settings → Backup &amp; restore → Backup), then uninstall K4 Audio, install the new APK and restore your backup.</string>
+    <string name="faq_a_update">Download the latest APK from the website and install it over the current app. Your favourites, playlists and history stay as they are.\n\nIf Android says “App not installed” or that the package conflicts: first make a backup (Settings → Backup &amp; restore → Backup), then uninstall OpenMusic, install the new APK and restore your backup.</string>
 
     <string name="faq_q_backup">How do I back up or move my library?</string>
-    <string name="faq_a_backup">Open Settings → Backup &amp; restore.\n\n• Backup saves one .db file with your favourites, playlists, history and lyrics. Keep it in Downloads or on Google Drive.\n• Restore picks that file. K4 Audio checks it, keeps a copy of your current library, swaps it in and restarts.\n\nUse it before uninstalling, when changing phones, or before trying a different build.</string>
+    <string name="faq_a_backup">Open Settings → Backup &amp; restore.\n\n• Backup saves one .db file with your favourites, playlists, history and lyrics. Keep it in Downloads or on Google Drive.\n• Restore picks that file. OpenMusic checks it, keeps a copy of your current library, swaps it in and restarts.\n\nUse it before uninstalling, when changing phones, or before trying a different build.</string>
 
     <string name="faq_q_music_folder">Where do I put my own songs, and how do I bring music from my PC?</string>
     <string name="faq_a_music_folder">Put audio files in Music → K4 Audio on your phone. They appear under Library → Local by themselves, and the Open music folder button there takes you to the folder.
@@ -36,5 +36,5 @@ Likes and playlists travel separately: PC Settings → Phone transfer shows a QR
     <string name="faq_a_unplayable">Check your internet first. Some songs are removed or blocked in your region; search for the song again and pick another version (results from JioSaavn are included). Turning on Settings → Player → Skip on error moves on automatically.</string>
 
     <string name="faq_q_contact">Found a bug or have an idea?</string>
-    <string name="faq_a_contact">Message @K4RTIK.nvm on Instagram, or visit kartiklangwan.vercel.app. Settings → Other → Logs has details you can share.</string>
+    <string name="faq_a_contact">Message @rupeshx5 on Instagram, or visit rupeshh.pages.dev. Settings → Other → Logs has details you can share.</string>
 </resources>

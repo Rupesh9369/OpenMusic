@@ -94,5 +94,5 @@ object StreamFallback {
         save()
     }
 
-    private fun save() = runCatching { file.outputStream().use { props.store(it, "K4 Audio stream fallbacks") } }
+    private fun save() = runCatching { file.outputStream().use { props.store(it, "OpenMusic stream fallbacks") } }
 }

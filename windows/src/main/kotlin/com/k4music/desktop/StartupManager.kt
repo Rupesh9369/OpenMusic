@@ -44,7 +44,7 @@ object StartupManager {
         private set
 
     /**
-     * Resolves the current executable path (or installed K4 Audio.exe).
+     * Resolves the current executable path (or installed OpenMusic.exe).
      */
     fun executablePath(): String? {
         val current = ProcessHandle.current().info().command().orElse(null)
@@ -80,7 +80,7 @@ object StartupManager {
         } finally { api.RegCloseKey(handle.value) }
     }.getOrNull()
 
-    /** Checks whether K4 Audio is currently registered in Windows Run key. */
+    /** Checks whether OpenMusic is currently registered in Windows Run key. */
     fun isEnabled(): Boolean = runCatching {
         withKey(create = false) { key ->
             val size = IntByReference()
@@ -88,7 +88,7 @@ object StartupManager {
         }
     }.getOrDefault(false)
 
-    /** Registers K4 Audio to launch on Windows startup with `--startup` flag (starts silently in tray). */
+    /** Registers OpenMusic to launch on Windows startup with `--startup` flag (starts silently in tray). */
     fun setEnabled(enable: Boolean, exe: String? = executablePath()): Boolean {
         lastError = null
         return try {

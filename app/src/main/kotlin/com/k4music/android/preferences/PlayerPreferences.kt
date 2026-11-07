@@ -81,6 +81,8 @@ object PlayerPreferences : GlobalPreferencesHolder() {
     val equalizerLevelsProperty = json(emptyList<Int>())
     var equalizerLevels by equalizerLevelsProperty
     var equalizerPreset by string("Flat")
+    /** A version the user chose to skip in the update popup. */
+    var skippedUpdateVersion by string("")
     var equalizerUserPresets by json(emptyMap<String, List<Int>>())
     val virtualizerModeProperty = enum(VirtualizerMode.Off)
     var virtualizerMode by virtualizerModeProperty
@@ -88,6 +90,8 @@ object PlayerPreferences : GlobalPreferencesHolder() {
     var virtualizerStrength by virtualizerStrengthProperty
     val stereoWideningProperty = int(0)
     var stereoWidening by stereoWideningProperty
+    val spatialModeProperty = enum(SpatialMode.Normal)
+    var spatialMode by spatialModeProperty
 
     enum class RepeatMode(@param:DrawableRes val icon: Int) {
         Off(R.drawable.repeat),
@@ -98,6 +102,9 @@ object PlayerPreferences : GlobalPreferencesHolder() {
     }
 
     enum class VirtualizerMode { Off, ThreeD, Surround }
+
+    /** 2D is the normal sound; 3D widens it; 8D and 16D move it around the head. */
+    enum class SpatialMode { Normal, Three, Eight, Sixteen }
 
     enum class AudioQuality(
         val saavn: String,

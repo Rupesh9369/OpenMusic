@@ -40,7 +40,7 @@ import com.k4music.desktop.res.desktop_now_playing
 import com.k4music.desktop.res.desktop_tray_ready
 import com.k4music.desktop.res.desktop_mute
 import com.k4music.desktop.res.desktop_unmute
-import com.k4music.desktop.res.k4_logo
+import com.k4music.desktop.res.openmusic_tile
 import com.k4music.desktop.res.next_track
 import com.k4music.desktop.res.play
 import com.k4music.desktop.res.pause
@@ -61,14 +61,14 @@ import kotlinx.coroutines.launch
 
 fun main(args: Array<String>) {
     Thread.setDefaultUncaughtExceptionHandler { thread, error -> AppLog.e("Crash", "Uncaught on ${thread.name}", error) }
-    // Before any window: Windows then names and groups the app as "K4 Audio" everywhere
+    // Before any window: Windows then names and groups the app as "OpenMusic" everywhere
     // (taskbar, pinned shortcut, notifications), not as the Java runtime.
     // A restart child waits before acquiring the mutex or accessing any library files.
     args.firstOrNull { it.startsWith("--wait-for-pid=") }?.substringAfter('=')?.toLongOrNull()?.let { pid ->
         try {
             ProcessHandle.of(pid).orElse(null)?.onExit()?.get(30, java.util.concurrent.TimeUnit.SECONDS)
         } catch (error: Exception) {
-            System.err.println("The previous K4 Audio process did not exit: ${error.message}")
+            System.err.println("The previous OpenMusic process did not exit: ${error.message}")
             return
         }
     }
@@ -94,7 +94,7 @@ fun main(args: Array<String>) {
     if (QUIT_ARG in args) exitProcess(0)
     // Only the single owning instance applies a staged restore before Room opens
     com.k4music.desktop.data.Maintenance.applyPendingRestore()
-    AppLog.i("App", "K4 Audio ${System.getProperty("jpackage.app-version") ?: "dev"} starting")
+    AppLog.i("App", "OpenMusic ${System.getProperty("jpackage.app-version") ?: "dev"} starting")
 
     val resolver = com.k4music.desktop.player.StreamResolver()
     val player = PlayerController(Mpv(AppPaths.tools), resolver)
@@ -127,7 +127,7 @@ fun main(args: Array<String>) {
             if (System.currentTimeMillis() - Settings.updateCheckedAt >= 6 * 60 * 60 * 1000L) {
                 runCatching { Updater.check() }.onSuccess { update ->
                     Settings.updateCheckedAt = System.currentTimeMillis()
-                    if (update != null && update.version != Settings.updateOfferedVersion && com.k4music.desktop.ui.AppDialogs.current == null) {
+                    if (update != null && update.version != Settings.updateOfferedVersion && update.version != Settings.skippedUpdateVersion && com.k4music.desktop.ui.AppDialogs.current == null) {
                         Settings.updateOfferedVersion = update.version
                         com.k4music.desktop.ui.AppDialogs.current = com.k4music.desktop.ui.AppDialogs.Dialog.Update(update)
                     }
@@ -193,7 +193,7 @@ fun main(args: Array<String>) {
                 val exe = requireNotNull(StartupManager.executablePath()) { "Restart is available in the installed app" }
                 ProcessBuilder(exe, "--wait-for-pid=${ProcessHandle.current().pid()}").start()
                 quit()
-            }.onFailure { com.k4music.desktop.ui.AppDialogs.show(it.message ?: "Could not restart K4 Audio") }
+            }.onFailure { com.k4music.desktop.ui.AppDialogs.show(it.message ?: "Could not restart OpenMusic") }
         }
 
         fun bringToFront() {
@@ -206,14 +206,14 @@ fun main(args: Array<String>) {
         val currentTrack = playerState.current
         val trayTooltip = if (currentTrack != null) {
             val title = currentTrack.title
-            val artist = currentTrack.artists ?: "K4 Audio"
-            "${title.take(50)} • ${artist.take(30)}\nK4 Audio"
+            val artist = currentTrack.artists ?: "OpenMusic"
+            "${title.take(50)} • ${artist.take(30)}\nOpenMusic"
         } else {
             stringResource(Res.string.desktop_tray_ready)
         }
 
         Tray(
-            icon = painterResource(Res.drawable.k4_logo),
+            icon = painterResource(Res.drawable.openmusic_tile),
             tooltip = trayTooltip,
             onAction = ::bringToFront,
             menu = {
@@ -246,7 +246,7 @@ fun main(args: Array<String>) {
             visible = visible.value,
             state = windowState,
             title = stringResource(Res.string.app_name),
-            icon = painterResource(Res.drawable.k4_logo),
+            icon = painterResource(Res.drawable.openmusic_tile),
             onPreviewKeyEvent = { event ->
                 if (event.type != KeyEventType.KeyDown) return@Window false
                 when {

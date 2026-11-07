@@ -51,6 +51,7 @@ data class AudioCapabilities(
 @OptIn(UnstableApi::class)
 class AudioEffects {
     val widener = StereoWidener()
+    val panner = SpatialPanner()
 
     private val mutableCapabilities = MutableStateFlow<AudioCapabilities?>(null)
     val capabilities: StateFlow<AudioCapabilities?> = mutableCapabilities.asStateFlow()
@@ -152,7 +153,15 @@ class AudioEffects {
     }
 
     private fun applyWidener() {
-        widener.width = PlayerPreferences.stereoWidening.coerceIn(0, 100) / 100f
+        val spatial = PlayerPreferences.spatialMode
+        // 3D adds a fixed wide stage on top of the user's own wide-stage setting.
+        val userWidth = PlayerPreferences.stereoWidening.coerceIn(0, 100) / 100f
+        widener.width = if (spatial == PlayerPreferences.SpatialMode.Three) maxOf(userWidth, 0.5f) else userWidth
+        panner.turnsPerSecond = when (spatial) {
+            PlayerPreferences.SpatialMode.Eight -> 0.125f
+            PlayerPreferences.SpatialMode.Sixteen -> 0.0625f
+            else -> 0f
+        }
     }
 
     private fun probe(): AudioCapabilities {
@@ -212,7 +221,7 @@ private val VirtualizerMode.platformMode
     else Virtualizer.VIRTUALIZATION_MODE_BINAURAL
 
 /**
- * "ATD" wide stage: mid/side stereo widening done in K4 Audio's own audio pipeline, so it works
+ * "ATD" wide stage: mid/side stereo widening done in OpenMusic's own audio pipeline, so it works
  * on every device and output. The side (difference) signal is raised while the mid is trimmed
  * to hold loudness, and a soft knee keeps boosted peaks from hard clipping. Mono input bypasses.
  */

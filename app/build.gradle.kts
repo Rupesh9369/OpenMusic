@@ -53,7 +53,7 @@ android {
         minSdk = 24
         targetSdk = 37
 
-        versionCode = System.getenv("ANDROID_VERSION_CODE")?.toIntOrNull() ?: 2142900
+        versionCode = System.getenv("ANDROID_VERSION_CODE")?.toIntOrNull() ?: 10000
         versionName = project.version.toString()
 
         multiDexEnabled = true
@@ -93,7 +93,7 @@ android {
         debug {
             applicationIdSuffix = ".debug"
             versionNameSuffix = "-DEBUG"
-            manifestPlaceholders["appName"] = "K4 Audio Debug"
+            manifestPlaceholders["appName"] = "OpenMusic Debug"
         }
 
         release {
@@ -103,7 +103,7 @@ android {
             signingConfig = signingConfigs.findByName("release")?.takeIf { it.storeFile?.isFile == true }
                 ?: signingConfigs.findByName("ci")?.takeIf { it.storeFile?.isFile == true }
                 ?: signingConfigs.getByName("debug").takeIf { allowDevelopmentSigning.get() }
-            manifestPlaceholders["appName"] = "K4 Audio"
+            manifestPlaceholders["appName"] = "OpenMusic"
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -116,7 +116,7 @@ android {
 
             applicationIdSuffix = ".nightly"
             versionNameSuffix = "-NIGHTLY"
-            manifestPlaceholders["appName"] = "K4 Audio Nightly"
+            manifestPlaceholders["appName"] = "OpenMusic Nightly"
             signingConfig = signingConfigs.findByName("ci")?.takeIf { it.storeFile?.isFile == true }
                 ?: signingConfigs.getByName("debug").takeIf { allowDevelopmentSigning.get() }
         }

@@ -99,7 +99,7 @@ fun Scaffold(
                     // Home: the logo, name and tagline, like the PC app's side panel.
                     if (isHome && selected == 0) {
                         Image(
-                            painter = painterResource(R.drawable.k4_logo),
+                            painter = painterResource(R.drawable.openmusic_tile),
                             contentDescription = null,
                             modifier = Modifier
                                 .padding(start = 8.dp)
