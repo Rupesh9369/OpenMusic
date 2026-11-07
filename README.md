@@ -23,7 +23,7 @@
 ## Preview
 
 <p align="center">
-  <img src="docs/assets/preview-android.gif" width="300" alt="OpenMusic on Android: moving between Home, Discover, Search, Library and Settings"/>
+  <img src="docs/assets/android-screenshot.png" width="300" alt="OpenMusic on Android: home screen"/>
   &nbsp;&nbsp;
   <img src="docs/assets/preview-windows.gif" width="640" alt="OpenMusic on Windows: moving between Home, Discover, Search, Library and Settings"/>
 </p>
@@ -32,9 +32,9 @@
 
 | Android | Windows |
 | --- | --- |
-| <img src="docs/assets/android-home.png" width="260" alt="OpenMusic on Android: home screen"/> | <img src="docs/assets/windows-home.png" width="560" alt="OpenMusic on Windows: home screen"/> |
+| <img src="docs/assets/android-screenshot.png" width="260" alt="OpenMusic on Android: home screen"/> | <img src="docs/assets/windows-home.png" width="560" alt="OpenMusic on Windows: home screen"/> |
 
-Frames for the previews are in [`docs/assets/frames-android`](docs/assets/frames-android) and [`docs/assets/frames-windows`](docs/assets/frames-windows).
+Frames for the Windows preview are in [`docs/assets/frames-windows`](docs/assets/frames-windows).
 
 ## Download
 
