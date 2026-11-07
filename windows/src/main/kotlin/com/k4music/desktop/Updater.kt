@@ -44,6 +44,7 @@ object Updater {
     }
 
     private const val INFO = "https://raw.githubusercontent.com/Rupesh9369/OpenMusic/main/update-windows.json"
+    private const val RELEASES_PAGE = "https://github.com/Rupesh9369/OpenMusic/releases"
 
     private val client = OkHttpClient.Builder().connectTimeout(20, TimeUnit.SECONDS)
         .readTimeout(30, TimeUnit.SECONDS).callTimeout(10, TimeUnit.MINUTES).build()
@@ -73,7 +74,8 @@ object Updater {
         val version = json.optString("version").trimStart('v', 'V')
         if (!version.matches(Regex("[0-9]+(?:\\.[0-9]+){1,3}"))) return@withContext null
         if (compareVersions(version, currentVersion) <= 0) return@withContext null
-        val url = json.optString("download_url").takeIf { it.startsWith("https://") }
+        // Only the project's own releases page may be opened: the JSON comes from the network.
+        val url = json.optString("download_url").takeIf { it.startsWith(RELEASES_PAGE) }
         Update(
             version = version,
             notes = json.optString("description").takeIf { it.isNotBlank() },

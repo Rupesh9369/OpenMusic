@@ -1,149 +1,144 @@
 <div align="center">
-    <img src="./app/src/main/ic_launcher-playstore.png" width="128" height="128" alt="OpenMusic icon"/>
-    <h1>OpenMusic</h1>
-    <p><b>Your music. Every screen.</b> · Open Frix<br/>A free, ad-free music player for Android and Windows by Rupesh</p>
+  <img src="docs/images/logo.png" width="128" height="128" alt="OpenMusic logo"/>
+  <h1>OpenMusic</h1>
+  <p><b>Your music. Every screen.</b><br/>A free, ad-free music player for Android and Windows.</p>
 
-<a href="https://rupeshh.pages.dev/download"><img src="https://img.shields.io/badge/Android-Download%20APK-555555?style=for-the-badge&logo=android&logoColor=white" alt="Download for Android"/></a>
-<a href="https://rupeshh.pages.dev/download/windows"><img src="https://img.shields.io/badge/Windows-Download%20installer-555555?style=for-the-badge&logo=windows&logoColor=white" alt="Download for Windows"/></a>
-<a href="https://github.com/Rupesh9369/OpenMusic/releases"><img src="https://img.shields.io/badge/All%20releases-555?style=for-the-badge&logo=github" alt="All releases"/></a>
+  <a href="https://github.com/Rupesh9369/OpenMusic/releases/latest"><img src="https://img.shields.io/badge/Android-Download%20APK-555555?style=for-the-badge&logo=android&logoColor=white" alt="Download for Android"/></a>
+  <a href="https://github.com/Rupesh9369/OpenMusic/releases/latest"><img src="https://img.shields.io/badge/Windows-Download%20installer-555555?style=for-the-badge&logo=windows&logoColor=white" alt="Download for Windows"/></a>
+  <a href="https://github.com/Rupesh9369/OpenMusic/releases"><img src="https://img.shields.io/badge/All%20releases-555?style=for-the-badge&logo=github" alt="All releases"/></a>
 
-<p>
-<img src="https://img.shields.io/badge/Android-7.0%2B-3DDC84?logo=android&logoColor=white" alt="Android 7.0+"/>
-<img src="https://img.shields.io/badge/Windows-10%20%7C%2011%20(64--bit)-0078D4?logo=windows&logoColor=white" alt="Windows 10 and 11"/>
-<img src="https://img.shields.io/badge/Kotlin-Compose-7F52FF?logo=kotlin&logoColor=white" alt="Kotlin, Compose"/>
-<img src="https://img.shields.io/badge/ads-none-success" alt="No ads"/>
-</p>
+  <p>
+    <img src="https://img.shields.io/badge/Android-7.0%2B-3DDC84?logo=android&logoColor=white" alt="Android 7.0+"/>
+    <img src="https://img.shields.io/badge/Windows-10%20%7C%2011%20(64--bit)-0078D4?logo=windows&logoColor=white" alt="Windows 10 and 11"/>
+    <img src="https://img.shields.io/badge/Kotlin-Compose-7F52FF?logo=kotlin&logoColor=white" alt="Kotlin, Compose"/>
+    <img src="https://img.shields.io/badge/license-GPL--3.0-blue" alt="GPL-3.0"/>
+    <img src="https://img.shields.io/badge/ads-none-success" alt="No ads"/>
+  </p>
 
-<p><a href="https://rupeshh.pages.dev">rupeshh.pages.dev</a> · <a href="https://www.instagram.com/rupeshx5/">Instagram: rupeshx5</a> · <a href="https://rupeshh.pages.dev">rupeshh.pages.dev</a></p>
+  <p><a href="https://rupeshh.pages.dev">rupeshh.pages.dev</a> · <a href="https://www.instagram.com/rupeshx5/">Instagram: @rupeshx5</a></p>
 </div>
 
 ---
 
+## Screenshots
+
+| Android | Windows |
+| --- | --- |
+| <img src="docs/images/android-home.png" width="260" alt="OpenMusic on Android: home screen"/> | <img src="docs/images/windows-home.png" width="560" alt="OpenMusic on Windows: home with the update popup"/> |
+
+The Windows screenshot shows the update popup. It appears when `update-windows.json` lists a newer version.
+
 ## Download
 
-Downloads are in this repository's [**Releases**](https://github.com/Rupesh9369/OpenMusic/releases) and on [rupeshh.pages.dev](https://rupeshh.pages.dev).
+Downloads are on the [Releases page](https://github.com/Rupesh9369/OpenMusic/releases/latest).
 
-| | Android | Windows |
-| --- | --- | --- |
-| **File** | [OpenMusic-v2.14.26-RELEASE.apk](https://github.com/Rupesh9369/OpenMusic/releases/download/v2.14.26/OpenMusic-v2.14.26-RELEASE.apk) | [OpenMusic-Setup-2.14.26.exe](https://github.com/Rupesh9369/OpenMusic/releases/download/v2.14.26/OpenMusic-Setup-2.14.26.exe) |
-| **Requires** | Android 7.0+, 64-bit ARM (arm64-v8a) | Windows 10 / 11, 64-bit |
-| **Size** | 26.4 MB | 115.8 MB |
-| **SHA-256** | `99A6426C7C224E14C57CA40F693339BD54E6CD14A585CB062356506B9E382177` | `0553E19EAD28612ED2A03C7F7E71D1B2EF96EF567BAA611CDF090E208D119FB7` |
-
-2.14.26 installs over 2.12.14 and earlier 2.14.26 builds, and keeps your library, likes, downloads and history. If you already have 2.14.26, the app won't offer this build as an update because the number is the same: download it and install it over your current app. Libraries backed up from 2.14.26 need 2.14.26 or newer to restore.
-
-**Android:** open the APK on your phone and allow *Install unknown apps* for your browser when Android asks. Updating from a build signed with a different key? Uninstall that build first.
-
-**Windows:** run the installer (no admin rights needed). It isn't code-signed yet, so on *Windows protected your PC* click **More info → Run anyway**. Later updates: Settings → Check for updates → **Update now**, or run a newer installer; it closes OpenMusic, updates it and keeps your library.
-
-## What's new in 2.14.26
-
-- **Picks up where you left off:** close the app while a song is playing and open it again: the same song carries on from the same moment. A paused song comes back paused and ready, so Play is instant. (Settings → Player on Android, Settings on PC.)
-- **Waits for the connection:** when the internet drops, the player says *Waiting for connection* and carries on by itself once you're back online. Songs are no longer switched to JioSaavn just because the connection dropped.
-- **Lighter on mobile data:** the phone reads two minutes ahead and saves only the start of the next song on mobile data. Next on the last song carries on with similar songs.
-- **Fixed:** the app could come back on the wrong song after being closed, and changing the streaming quality could switch a song to JioSaavn.
-- **Songs start much faster:** about 1 second on PC and under 2 seconds on Android in testing. Most songs no longer wait for the YouTube helper.
-- **Skipping to any part of a song works:** playback picks up again in under a second, even right after a song starts. Songs no longer stop at about 0:30.
-- **Downloads finish in seconds,** including a song you have played or are playing right now.
-- **Long songs and mixes no longer crawl:** a 3-hour mix now seeks in under a second.
-- **Songs no longer end early:** fixed a rare bug that could cut a song short.
-- **Downloads shows only songs you downloaded,** and a song you have only played can now be downloaded properly.
-- **Lighter again:** about 40% less memory on Android, the next song is saved ahead only on Wi-Fi, and the PC no longer fetches a song twice.
-- **Shared YouTube links** now play similar songs after them instead of repeating one song.
-
-- **Much lighter on PC:** the app now uses about 270 MB of memory instead of 470 MB (software drawing, a small garbage collector and capped caches), and the phone app starts its YouTube helper only when a song needs it. Unused code and libraries were removed.
-- **Updates without hunting:** the PC app checks at start and offers the new installer (Settings has the same button); the phone shows a card on Home and a *Check for updates* button in Settings that opens the APK download.
-- **Phone to PC transfer you can scan:** the QR code is shorter and larger (it was too dense for some cameras), the PC has **New QR code**, **Copy code** and **Disconnect**, and the phone has *Enter the code instead* if a camera cannot read the screen.
-- **Discord status finds Discord:** if Discord opens after OpenMusic, the status starts by itself within a few seconds.
-- **OpenMusic:** the app was called OpenMusic. New name, new logo and a black-and-white minimal theme on phone and PC. Installing over the old app keeps your library, likes, playlists and downloads; on PC your old `OpenMusic` data folder is moved to `OpenMusic` on first start.
-- **A music folder you can see:** `Music\K4 Audio` on the PC is created automatically; on the phone it is `Music › K4 Audio`. Songs you drop in appear under *Library → Local*, and an **Open music folder** button is in the Local tab (and PC Settings).
-- **Time-aware greeting:** Home now says Good morning / afternoon / evening / night (it said "Good evening" in the middle of the night).
-- **Phone → PC transfer sends every playlist** (YouTube and Spotify imports too), not only liked songs.
-- **Downloads:** fewer parallel downloads on the phone, and the PC retries YouTube with other clients when it asks if you are a bot (plus an optional browser sign-in in Settings → Player).
-
-- **Lighter:** the Android app is a quarter smaller (28 MB) and uses far less memory for artwork; the PC app hands unused memory back to Windows while it plays in the background, and redraws much less while a song plays.
-- **More reliable:** safer library backup and restore, downloads that can be cancelled and retried, saved lyrics and play counts that are never lost, and playback that resumes near where it stopped even after a crash.
-- **Better sound on Android:** JioSaavn and local songs no longer play much louder than YouTube songs with loudness normalization on.
-- **A tidier player on PC:** balanced controls, and like, lyrics, queue, sound output and volume right inside the full-screen player.
-- **Polished screens:** clearer buttons and options in Settings, keyboard shortcuts shown as keys, helpful empty Favorites / History / Downloads pages, and a layout that fits small windows.
-- **Private by default:** the Discord status is now off until you turn it on.
-- **Mini player stays put (Android):** it can no longer be swiped away by accident.
-- **The right lyrics:** synced lyrics now match the song that is playing instead of falling back to another song's words.
-- **PC fixes:** a second launch brings the window back, Add to playlist → New playlist works, Esc closes menus first, the search box takes typing straight away, and yt-dlp keeps itself up to date every week.
-- **Phone → PC transfer:** the PC shows a QR code (Settings → Phone transfer), the phone scans it (Settings → Backup & restore → Send library to PC) and your likes and playlists go straight to the PC over your Wi-Fi, encrypted, with no server in between.
-
-Every fix and how it was verified: [AUDIT.md](docs/AUDIT.md), [AUDIT-2026-10-24.md](docs/AUDIT-2026-10-24.md) and [AUDIT-2026-11-05.md](docs/AUDIT-2026-11-05.md).
-
-## Bring your music across
-
-- **PC:** copy songs into `Music\K4 Audio` (or add any folder in Settings), then press *Scan*.
-- **Phone from PC:** plug the phone in with USB, choose *File transfer*, copy the audio files into `Music/K4 Audio` on the phone. They show up in *Library → Local* by themselves.
-- **Likes and playlists, phone → PC:** PC *Settings → Phone transfer* shows a QR code; scan it in the phone app (*Settings → Backup & restore → Send library to PC*).
+- **Android:** open the APK on your phone and allow *Install unknown apps* for your browser.
+- **Windows:** run `OpenMusic-Setup-x.y.z.exe`. It is not code-signed yet, so Windows may show *Protected your PC*. Click **More info → Run anyway**.
 
 ## Features
 
-- 🎵 **Two catalogues, one player:** YouTube Music first, JioSaavn as a second source and automatic fallback
-- ⬇️ **Downloads** for offline listening, with streaming quality from *Data saver* to *High*
-- 📥 **Playlist import** from Spotify and YouTube Music links
-- 🎚️ **Real audio effects:** equalizer with presets and manual bands, bass boost, 3D/surround, wide stage, reverb, loudness normalization
-- 🔁 Consistent repeat and shuffle, queue-safe *Play next*, persistent queue
-- 🔍 Search songs, albums, artists, videos and playlists; discover by mood and genre
-- 🎤 Lyrics, including synchronized lyrics
-- 📱 Local music from your device, background playback, Android Auto
-- 🎨 Dynamic theme and Material You colours, dark purple design
-- 🔗 Opens YouTube / YouTube Music links (`watch`, `playlist`, `channel`, …)
-- 🚫 No ads, no account needed, lightweight
+- **Two catalogues, one player:** YouTube Music first, JioSaavn as a second source and automatic fallback.
+- **Local music:** plays songs from your device (Android) or from `Music\OpenMusic` on your PC (Windows). The folders are `Music/K4 Audio` (phone) and `MusicK4 Audio` (PC).
+- **Downloads** for offline listening, with streaming quality from *Data saver* to *High*.
+- **Playlist import** from Spotify and YouTube Music links.
+- **Audio effects:** 10-band equalizer with presets, bass boost, wide stage, reverb, loudness normalization, pitch and skip silence.
+- **Spatial audio:** 2D (normal), 3D (wider), 8D and 16D (the sound moves around your head). Changes apply to the song that is playing.
+- **Lyrics**, including synchronized lyrics.
+- **Discord status** on Windows (shows OpenMusic and the song you are playing).
+- **Phone to PC transfer** over your Wi-Fi, encrypted, with no server in between.
+- **Pure Glass**, Blurred Artwork and other background styles on Windows.
+- **Updates from a JSON file:** a popup tells you when a newer version is out, with **Update** and **Skip** buttons.
 
-### On Windows
+## How it works
 
-- 🎧 Pick the audio output (Bluetooth, headphones, speakers), even mid-song
-- ⌨️ Media keys and Bluetooth headphone buttons work in the background; Previous / Play-Pause / Next under the taskbar thumbnail
-- 💬 Discord status: *Playing OpenMusic* with the song and cover, and an icon next to your name in voice channels
-- 🪟 Resizable, hideable panels, navigation left or bottom, full screen (F11), system tray
-- 🔄 In-app updates from this repository's releases
+```
+ +-------------------+        +----------------------+        +-------------------+
+ |  Android app      |        |  Windows app         |        |  GitHub repo      |
+ |  (Compose, Media3)|        |  (Compose Desktop,   |        |  update-android   |
+ |                   |        |   libmpv)            |        |  update-windows   |
+ +---------+---------+        +----------+-----------+        +---------+---------+
+           |                             |                              |
+           |   search / play             |   search / play              |
+           v                             v                              |
+ +-------------------------------------------------------------+        |
+ |  Providers: YouTube Music (Innertube), JioSaavn,            |        |
+ |  lyrics (LRCLIB), SponsorBlock, Discord RPC                 |        |
+ +-------------------------------------------------------------+        |
+           |                                                            |
+           |   on start and every few hours: read the JSON  <-----------+
+           v
+   popup: Update  -> opens the Releases page
+          Skip    -> hides that version
+```
+
+### Playback flow
+
+1. You pick a song from search, Home, a playlist or Local music.
+2. The app stores it in the local database (Room) and adds it to the queue.
+3. The stream is resolved: YouTube through the Innertube API, JioSaavn as a fallback. On Windows, `yt-dlp` gives the audio URL.
+4. The audio is played by Media3 / ExoPlayer on Android and by libmpv on Windows.
+5. Effects (equalizer, bass, wide stage, reverb, spatial mode) are applied as an audio processor chain (Android) or an mpv filter chain (Windows).
+6. Play history, favorites and lyrics are saved to the local database.
+
+### Update flow
+
+1. On start (Windows) or when Home opens (Android), the app downloads its JSON file from `raw.githubusercontent.com/Rupesh9369/OpenMusic/main/`.
+2. It compares the file's `version` with its own version, part by part.
+3. A newer version shows the popup. **Update** opens the Releases page; **Skip** remembers that version.
+4. The download link is only accepted when it starts with `https://github.com/Rupesh9369/OpenMusic/releases`.
+
+## Tech
+
+| Area | Android | Windows |
+| --- | --- | --- |
+| Language and UI | Kotlin, Jetpack Compose | Kotlin, Compose Multiplatform for Desktop |
+| Playback | Media3 / ExoPlayer with custom audio processors | libmpv (mpv) with an FFmpeg filter chain |
+| Stream extraction | YouTube Innertube API | `yt-dlp`, QuickJS for YouTube challenges |
+| Storage | Room database | Room (SQLite) |
+| Lyrics | LRCLIB | LRCLIB |
+| Packaging | Gradle, signed APK | Gradle, Inno Setup installer |
+
+Shared Kotlin modules live in `core/`, `compose/`, `providers/` and `ktor-client-brotli/`.
 
 ## Build from source
 
-Needs JDK 21+ and the Android SDK.
+You need JDK 21 and, for Android, the Android SDK.
+
+**Android (debug APK):**
 
 ```
-gradlew :app:assembleRelease
+./gradlew :app:assembleDebug
 ```
 
-Windows app (Compose Desktop). Put the native tools in `windows/downloads/` first: `mpv/libmpv-2.dll`, `yt-dlp_win.zip`, `qjs-windows-x86_64.exe` and a portable Inno Setup in `innosetup/`. Then:
+**Windows (run the app from source):** put the native tools in `windows/downloads/` (see [windows/README.md](windows/README.md)), then:
 
 ```
-gradlew -p windows packageInstaller
+./gradlew -p windows run
 ```
 
-The installer lands in `windows/build/installer/`.
+**Windows installer:**
 
-The APK lands in `app/build/outputs/apk/release/`. Production release/nightly builds require a private signing keystore. Configure `ANDROID_NIGHTLY_KEYSTORE`, `ANDROID_NIGHTLY_KEYSTORE_ALIAS` and `ANDROID_NIGHTLY_KEYSTORE_PASSWORD` (the existing CI variable names also configure release signing). For local testing, build `:app:assembleDebug`; an intentionally debug-signed release requires `-PallowDevelopmentSigning=true` and must not be distributed as a production release.
+```
+./gradlew -p windows packageInstaller
+```
 
-For the repeatable verification workflow, run `scripts/verify-release.ps1` with `-PythonCommand` pointing to a Python 3 interpreter and, if needed, `-GradleCommand` pointing to Gradle 9.8.0. Use `-Offline` when dependencies are already cached. The script runs regression tests and lint, builds the release, checks its signature and packaged runtimes, and exports the APK with a SHA256 checksum.
+The installer is written to `windows/build/installer/`.
 
-After compiling both platforms, run `python -B scripts/verify-library-parity.py` to check their shared DAO queries, generated table/index/view SQL and Room identity against the committed Android schema. This check reads generated files; run it after fresh platform builds.
+Release builds need a signing keystore (see `app/build.gradle.kts`).
 
-## Origin
+## Update files
 
-OpenMusic is a merge of two codebases: [ViTune](https://github.com/25huizengek1/ViTune)
-(base: player, providers, UI) and OpenMusic (JioSaavn catalogue, taste engine,
-crash-safe downloads, K4 theme). Upstream licenses and attributions are kept
-in `LICENSE` and Acknowledgments below.
+| File | Used by |
+| --- | --- |
+| [`update-android.json`](update-android.json) | Android app |
+| [`update-windows.json`](update-windows.json) | Windows app |
 
-## Acknowledgments
+Each file has `title`, `version`, `description`, `download_url`, `update_label` and `skip_label`. Set `download_url` to the Releases page. To publish an update, raise `version` and push the file to `main`.
 
-- [**YouTube-Internal-Clients**](https://github.com/zerodytrash/YouTube-Internal-Clients): A Python
-  script that discovers hidden YouTube API clients. Just a research project.
-- [**ionicons**](https://github.com/ionic-team/ionicons): Premium hand-crafted icons built by Ionic,
-  for Ionic apps and web apps everywhere.
-- [**Flaticon: Ilham Fitrotul Hayat**](https://www.flaticon.com/authors/ilham-fitrotul-hayat): the
-  app's logo uses a music note icon.
+## Credits and license
 
-## Disclaimer
+OpenMusic is built on [ViTune](https://github.com/25huizengek1/ViTune) (player, providers and UI), with additions for JioSaavn, audio effects and the Windows app. See `LICENSE` for the upstream copyright notices.
 
-This project and its contents are not affiliated with, funded, authorized, endorsed by, or in any
-way associated with YouTube, Google LLC or any of its affiliates and subsidiaries.
+Licensed under the [GNU General Public License v3.0](LICENSE).
 
-Any trademark, service mark, trade name, or other intellectual property rights used in this project
-are owned by the respective owners.
+This project is not affiliated with YouTube, Google LLC, Spotify, JioSaavn or Discord.

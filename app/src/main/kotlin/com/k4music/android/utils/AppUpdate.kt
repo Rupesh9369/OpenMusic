@@ -30,6 +30,7 @@ object AppUpdate {
     )
 
     private const val INFO = "https://raw.githubusercontent.com/Rupesh9369/OpenMusic/main/update-android.json"
+    private const val RELEASES_PAGE = "https://github.com/Rupesh9369/OpenMusic/releases"
     private const val EVERY_MS = 6 * 60 * 60 * 1000L
     private val versionPattern = Regex("[0-9]+(\\.[0-9]+){1,3}")
     private val _available = MutableStateFlow<Release?>(null)
@@ -53,7 +54,8 @@ object AppUpdate {
     internal fun parse(json: String): Release? {
         val o = JSONObject(json)
         val version = o.optString("version").takeIf { it.matches(versionPattern) } ?: return null
-        val url = o.optString("download_url").takeIf { it.startsWith("https://") } ?: return null
+        // Only the project's own releases page may be opened: the JSON comes from the network.
+        val url = o.optString("download_url").takeIf { it.startsWith(RELEASES_PAGE) } ?: return null
         return Release(
             version = version,
             title = o.optString("title").ifBlank { "Update available" },

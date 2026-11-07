@@ -2,7 +2,7 @@
   "title": "Update available",
   "version": "1.0.1",
   "description": "Test update for Windows: spatial audio, reset button and Pure Glass background.",
-  "download_url": "https://github.com/Rupesh9369/OpenMusic/releases",
+  "download_url": "https://github.com/Rupesh9369/OpenMusic/releases/latest",
   "update_label": "Update",
   "skip_label": "Skip"
 }
