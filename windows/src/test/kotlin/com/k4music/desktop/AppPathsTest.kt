@@ -9,17 +9,17 @@ class AppPathsTest {
     @Test
     fun theOldK4MusicFolderMovesToK4AudioOnce() {
         val base = Files.createTempDirectory("k4paths").toFile()
-        base.resolve("OpenMusic").apply { mkdirs(); resolve("data.db").writeText("library") }
+        base.resolve("K4 Music").apply { mkdirs(); resolve("data.db").writeText("library") }
 
         val moved = AppPaths.moved(base.path)
-        assertEquals("OpenMusic", moved.name)
+        assertEquals("K4 Audio", moved.name)
         assertEquals("library", moved.resolve("data.db").readText(), "the library came along")
-        assertTrue(!base.resolve("OpenMusic").exists())
+        assertTrue(!base.resolve("K4 Music").exists())
 
         // A second start with both present never touches either.
-        base.resolve("OpenMusic").mkdirs()
+        base.resolve("K4 Music").mkdirs()
         AppPaths.moved(base.path)
-        assertTrue(base.resolve("OpenMusic").exists() && base.resolve("OpenMusic").resolve("data.db").exists())
+        assertTrue(base.resolve("K4 Music").exists() && base.resolve("K4 Audio").resolve("data.db").exists())
         base.deleteRecursively()
     }
 }

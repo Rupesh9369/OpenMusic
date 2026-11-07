@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="docs/images/logo.png" width="128" height="128" alt="OpenMusic logo"/>
+  <img src="docs/assets/logo.png" width="128" height="128" alt="OpenMusic logo"/>
   <h1>OpenMusic</h1>
   <p><b>Your music. Every screen.</b><br/>A free, ad-free music player for Android and Windows.</p>
 
@@ -20,13 +20,21 @@
 
 ---
 
+## Preview
+
+<p align="center">
+  <img src="docs/assets/preview-android.gif" width="260" alt="OpenMusic on Android: moving between Home, Discover, Search, Library and Settings"/>
+  &nbsp;&nbsp;
+  <img src="docs/assets/preview-windows.gif" width="640" alt="OpenMusic on Windows: moving between Home, Discover, Search, Library and Settings"/>
+</p>
+
 ## Screenshots
 
 | Android | Windows |
 | --- | --- |
-| <img src="docs/images/android-home.png" width="260" alt="OpenMusic on Android: home screen"/> | <img src="docs/images/windows-home.png" width="560" alt="OpenMusic on Windows: home with the update popup"/> |
+| <img src="docs/assets/android-home.png" width="260" alt="OpenMusic on Android: home screen"/> | <img src="docs/assets/windows-home.png" width="560" alt="OpenMusic on Windows: home screen"/> |
 
-The Windows screenshot shows the update popup. It appears when `update-windows.json` lists a newer version.
+Frames for the previews are in [`docs/assets/frames-android`](docs/assets/frames-android) and [`docs/assets/frames-windows`](docs/assets/frames-windows).
 
 ## Download
 
