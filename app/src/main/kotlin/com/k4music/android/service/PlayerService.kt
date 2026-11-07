@@ -1265,7 +1265,7 @@ class PlayerService : InvincibleService(), Player.Listener, PlaybackStatsListene
                 .setOnlyAlertOnce(true)
                 .setShowWhen(false)
                 .setSmallIcon(
-                    player.playerError?.let { R.drawable.alert_circle } ?: R.drawable.ic_stat_k4audio
+                    player.playerError?.let { R.drawable.alert_circle } ?: R.drawable.ic_stat_openmusic
                 )
                 .setOngoing(false)
                 .setContentIntent(
@@ -1468,7 +1468,7 @@ class PlayerService : InvincibleService(), Player.Listener, PlaybackStatsListene
                         .setAutoCancel(true)
                         .setOnlyAlertOnce(true)
                         .setShowWhen(true)
-                        .setSmallIcon(R.drawable.ic_stat_k4audio)
+                        .setSmallIcon(R.drawable.ic_stat_openmusic)
                 }
 
                 handler.post {
