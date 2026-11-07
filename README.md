@@ -23,7 +23,7 @@
 ## Preview
 
 <p align="center">
-  <img src="docs/assets/preview-android.gif" width="260" alt="OpenMusic on Android: moving between Home, Discover, Search, Library and Settings"/>
+  <img src="docs/assets/preview-android.gif" width="300" alt="OpenMusic on Android: moving between Home, Discover, Search, Library and Settings"/>
   &nbsp;&nbsp;
   <img src="docs/assets/preview-windows.gif" width="640" alt="OpenMusic on Windows: moving between Home, Discover, Search, Library and Settings"/>
 </p>
